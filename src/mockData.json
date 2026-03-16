@@ -1,0 +1,20 @@
+{
+  "courses": [
+    {
+      "id": "tc-ts-01",
+      "name": "Traitement du Signal",
+      "professor": "M. Fourier",
+      "credits": 5,
+      "averageRating": 2.5,
+      "description": "Étude des signaux continus et discrets, transformées, et filtrage."
+    },
+    {
+      "id": "tc-res-02",
+      "name": "Architecture des Réseaux",
+      "professor": "Mme. Ethernet",
+      "credits": 4,
+      "averageRating": 4.8,
+      "description": "Modèle OSI, protocoles TCP/IP et routage."
+    }
+  ]
+}
