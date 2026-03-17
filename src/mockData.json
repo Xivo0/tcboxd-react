@@ -15,6 +15,22 @@
       "credits": 4,
       "averageRating": 4.8,
       "description": "Modèle OSI, protocoles TCP/IP et routage."
+    },
+    {
+      "id": "tc-inf-03",
+      "name": "Algorithmie",
+      "professor": "M. Olivier",
+      "credits": 4,
+      "averageRating": 4.8,
+      "description": "Modèle OSI, protocoles TCP/IP et routage."
+    },
+    {
+      "id": "tc-inf-04",
+      "name": "CRO",
+      "professor": "M. Olivier",
+      "credits": 4,
+      "averageRating": 4.8,
+      "description": "Modèle OSI, protocoles TCP/IP et routage."
     }
   ]
 }
