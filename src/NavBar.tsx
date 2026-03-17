@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import icone from './assets/icon.png';
+import './App.css'
 
 //source : https://react-bootstrap.netlify.app/docs/components/navbar/
 
@@ -11,7 +13,7 @@ export default function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">TCBoxd</Navbar.Brand>
+        <Navbar.Brand href="#"><img src={icone} alt='icone' className='logo' />TCBoxd</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
