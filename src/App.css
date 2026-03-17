@@ -13,16 +13,16 @@
 }
 
 .course-card {
-  border: 1px solid #ccc;
+  border: 1px solid #180c39;
   border-radius: 8px;
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   color: #333;
 }
 
 .course-card h2 {
   margin-top: 0;
-  color: #aa3bff;
+  color: #235583;
 }
 
 .description {
@@ -51,10 +51,10 @@ button:hover {
 }
 
 .logo{
- width: 400px;
- height: 400px;
+ width: 200px;
+ height: 200px;
 }
 
 .logo:hover{
-  content: url('./assets/icon_explode.PNG');
+  content: url('./assets/icon_explode.png');
 }

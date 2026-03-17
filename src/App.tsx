@@ -1,13 +1,15 @@
 import './App.css';
 import data from './mockData.json';
 import icone from './assets/icon.png';
-
+import NavBar from './NavBar.jsx';
 
 
 function App() {
   const coursesList = data.courses;
 
   return (
+    <>
+    <NavBar />
     <div className="app-container">
       
       <h1 className='title'> 
@@ -27,6 +29,7 @@ function App() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 
