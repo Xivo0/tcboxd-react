@@ -43,3 +43,18 @@ button {
 button:hover {
   background-color: #8a2be2;
 }
+
+.title{
+ display: flex;
+ align-items: center;
+ gap: 10px;
+}
+
+.logo{
+ width: 400px;
+ height: 400px;
+}
+
+.logo:hover{
+  content: url('./assets/icon_explode.PNG');
+}
