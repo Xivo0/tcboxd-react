@@ -19,8 +19,8 @@ export default function NavBar() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#accueil">Accueil</Nav.Link>
-            <Nav.Link href="#classement">Classement</Nav.Link>
+            <Nav.Link href="#accueil" className="onglet-separateur">Accueil</Nav.Link>
+            <Nav.Link href="#classement" className="onglet-separateur">Classement</Nav.Link>
             <NavDropdown title="Matières" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#ts">Traitement du Signal</NavDropdown.Item>
               <NavDropdown.Item href="#res">Réseaux</NavDropdown.Item>
