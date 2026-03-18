@@ -1,0 +1,80 @@
+/* Conteneur global de la section */
+.subjects-section {
+  width: 100%;
+  max-width: 1000px; /* Même largeur max que la section précédente pour aligner le tout */
+  margin: 0 auto 40px auto; /* Centre la section horizontalement */
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: sans-serif;
+}
+
+/* LA GRILLE MAGIQUE */
+.subjects-grid {
+  display: grid;
+  /* Crée 4 colonnes de taille égale (1fr = 1 fraction de l'espace disponible) */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 24px; /* L'espace régulier entre les cartes */
+}
+
+/* LE STYLE DES CARTES */
+.subject-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pousse le bouton vers le bas */
+  align-items: center;
+  
+  height: 220px; /* Un peu plus hautes que larges, comme sur ton dessin */
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 24px 16px;
+  background-color: #fff;
+  text-align: center;
+  
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Petite ombre sympa au survol */
+}
+
+.subject-code {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+/* Le bouton à l'intérieur de la carte */
+.rate-button {
+  background-color: #3B0764; /* Le violet foncé de ton croquis */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.rate-button:hover {
+  background-color: #580b94; /* Un peu plus clair au survol */
+}
+
+/* --- RESPONSIVE DESIGN (Optionnel mais recommandé) --- */
+/* Sur les petits écrans (tablettes), on passe à 2 colonnes */
+@media (max-width: 768px) {
+  .subjects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Sur les très petits écrans (téléphones), on passe à 1 colonne */
+@media (max-width: 480px) {
+  .subjects-grid {
+    grid-template-columns: 1fr;
+  }
+}

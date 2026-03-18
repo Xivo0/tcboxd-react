@@ -23,12 +23,7 @@
 }
 
 /* Masquer la barre de défilement pour un look plus "propre" (Optionnel) */
-.scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
-}
-.scroll-container {
-  scrollbar-width: none; /* Firefox */
-}
+
 
 /* LES CARTES */
 .review-card {
