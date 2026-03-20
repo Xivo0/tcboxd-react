@@ -1,8 +1,9 @@
 import './App.css';
-import data from './mockData.json';
 
 import NavBar from './NavBar';
 import RecentReviews from './RecentReviews';
+import SubjectsToRate from './SubjectsToRate';
+import RankingPreview from './RankingPreview';
 
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
     <>
     <NavBar />
     <RecentReviews/>
+    <SubjectsToRate/>
+    <RankingPreview/>
     </>
   );
 }
