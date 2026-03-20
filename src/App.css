@@ -58,3 +58,7 @@ button:hover {
 .logo:hover{
   content: url('./assets/icon_explode.png');
 }
+.greetings{
+  font-family: 'Arial', sans-serif;
+  color: #3b0764;
+}

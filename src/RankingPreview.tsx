@@ -22,6 +22,7 @@ export default function RankingPreview(){
                         </div>
                         <div className='step step-first'>
                             <span className='step-number'>1</span>
+                            
                         </div>
                         <div className='step step-third'>
                             <span className='step-number'>3</span>
