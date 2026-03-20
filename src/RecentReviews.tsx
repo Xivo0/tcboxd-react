@@ -1,8 +1,10 @@
 import data from './mockData.json';
 import './RecentReviews.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function RecentReviews(){
-    const coursesList = data.courses
+    const coursesList = data.courses;
+    const navigate = useNavigate()
 
     return (
         <section className="reviews-section">
@@ -12,8 +14,8 @@ export default function RecentReviews(){
       <div className="scroll-container">
         
         {coursesList.map((review) => (
-          <div key={review.id} className="review-card">
-            <h3>{review.name}</h3>
+          <div key={review.id} className="review-card" onClick={()=>navigate(`/course/${review.id}`)} style={{ cursor:'pointer'}}>
+            <h3 >{review.name}</h3>
             <p>Par {review.professor}</p>
             {/* Ajoute ici les étoiles ou le contenu de ta review */}
           </div>

@@ -1,11 +1,13 @@
 import './RankingPreview.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function RankingPreview(){
+    const navigate = useNavigate();
 
     const rankings = [
-    { id: 1, title: "Top Professeurs" },
-    { id: 2, title: "Top Matières" },
-    { id: 3, title: "Top Succès" }
+    { id: 1, title: "Top Professeurs", path:"/classement/professeurs" },
+    { id: 2, title: "Top Matières" , path:"/classement/matieres"},
+    { id: 3, title: "Top Succès" , path:"/classement/succes"}
   ];
   return(
     <section className='ranking-section'>
@@ -13,7 +15,7 @@ export default function RankingPreview(){
 
         <div className='podiums-container'>
             {rankings.map((ranking) =>(
-                <div key={ranking.id} className='podium-wrapper'>
+                <div key={ranking.id} className='podium-wrapper' onClick={()=>navigate(ranking.path)} style={{cursor :'pointer'}}>
                     <h3 className='podium-title'>{ranking.title}</h3>
 
                     <div className='podium'>

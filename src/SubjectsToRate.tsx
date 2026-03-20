@@ -1,8 +1,10 @@
 import './SubjectsToRate.css';
 import data from './mockData.json';
+import { useNavigate } from 'react-router-dom';
 
 export default function SubjectsToRate(){
-    const coursesList = data.courses
+    const coursesList = data.courses;
+    const navigate = useNavigate();
     
     return(
         <section className="subjects-section">
@@ -17,7 +19,7 @@ export default function SubjectsToRate(){
             <span className="subject-code">{courses.credits}</span>
             
             {/* Un petit bouton factice pour inviter au clic */}
-            <button className="rate-button">Noter</button>
+            <button className="rate-button" onClick={() => navigate(`/course/${courses.id}`)}>Noter</button>
           </div>
         ))}
 
