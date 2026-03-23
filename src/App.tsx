@@ -5,7 +5,21 @@ import RecentReviews from './RecentReviews';
 import SubjectsToRate from './SubjectsToRate';
 import RankingPreview from './RankingPreview';
 import { Routes, Route } from 'react-router-dom';
+import { supabase } from './lib/supabase';
 
+
+
+const loginWithGithub = async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'github',
+options: {
+      // Une fois connecté sur GitHub, il revient ici
+      redirectTo: 'http://localhost:5173/', 
+    },
+  });
+
+  if (error) console.error("Erreur de connexion :", error.message);
+};
 function App() {
 
   return (
@@ -26,7 +40,14 @@ function App() {
         </div>
       } />
     </Routes>
+    
+      
+
+    <button onClick={loginWithGithub}>
+      Se connecter avec mon compte Github
+    </button>
     </>
+  
   );
 }
 
