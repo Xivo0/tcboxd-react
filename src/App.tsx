@@ -5,6 +5,7 @@ import ListeMatieres from './pages/ListeMatieres';
 import RecentReviews from './pages/RecentReviews';
 import SubjectsToRate from './pages/SubjectsToRate';
 import RankingPreview from './pages/RankingPreview';
+import Matieres from './pages/Matieres';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -35,8 +36,14 @@ function App() {
           <h2>Détails du cours</h2>
         </div>
       } />
+	  <Route path="/subjects/:id" element={
+  		<div className="app-container">
+    		<Matieres />
+  		</div>
+	  } />
     </Routes>
     </>
+
   );
 }
 
