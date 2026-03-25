@@ -60,3 +60,17 @@ export async function getTopHaters() {
   if (error) throw error
   return data
 }
+
+// Récupérer les avis récents (toutes matières)
+export async function getRecentReviews(limit = 10) {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select(`
+      *,
+      users(username)
+    `)
+    .order('created_at', { ascending: false })
+    .limit(limit)
+  if (error) throw error
+  return data
+}
