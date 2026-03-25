@@ -1,6 +1,6 @@
 import './RankingPreview.css';
 import { useEffect, useState } from 'react';
-import { getTopRaters, getTopHaters } from './services/reviews';
+import { getTopRaters, getTopHaters } from '../services/reviews';
 
 export default function RankingPreview() {
   const [topRaters, setTopRaters] = useState<any[]>([]);

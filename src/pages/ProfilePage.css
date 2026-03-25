@@ -1,0 +1,138 @@
+/* --- CONTENEUR GLOBAL --- */
+.profile-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: sans-serif;
+  color: #333;
+}
+
+/* --- EN-TÊTE DU PROFIL --- */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  border: 2px solid #e5e7eb;
+}
+
+.profile-info h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+}
+
+.profile-email {
+  margin: 0 0 12px 0;
+  color: #6b7280;
+}
+
+.profile-badge {
+  display: inline-block;
+  background-color: #f3e8ff; /* Violet très clair */
+  color: #7e22ce; /* Violet foncé */
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+/* --- SECTION DES AVIS --- */
+.section-title {
+  margin-bottom: 24px;
+  font-size: 1.4rem;
+}
+
+/* LA GRILLE RESPONSIVE MAGIQUE */
+.ratings-grid {
+  display: grid;
+  /* Crée automatiquement autant de colonnes que possible. Min: 300px, Max: 1fr */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* --- LES CARTES D'AVIS --- */
+.rating-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rating-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.subject-badge {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Les étoiles */
+.card-rating {
+  margin-bottom: 16px;
+}
+
+.stars {
+  color: #fbbf24; /* Jaune or */
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.stars-empty {
+  color: #e5e7eb; /* Gris clair */
+}
+
+/* Le commentaire */
+.card-comment {
+  font-size: 0.95rem;
+  color: #4b5563;
+  font-style: italic;
+  flex-grow: 1; /* Pousse la ligne et la date tout en bas si le texte est court */
+  margin: 0;
+}
+
+.card-divider {
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin: 20px 0 15px 0;
+}
+
+.card-date {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  text-align: right;
+}

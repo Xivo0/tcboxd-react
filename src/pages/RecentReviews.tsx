@@ -1,4 +1,4 @@
-import data from './mockData.json';
+import data from '../mockData.json';
 import './RecentReviews.css';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,0 +1,19 @@
+.liste-matieres-section {
+  padding: 2rem;
+}
+
+.filtres {
+  margin-bottom: 1rem;
+}
+
+.matieres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.matiere-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+}

@@ -1,6 +1,6 @@
 import './SubjectsToRate.css';
 import { useEffect, useState } from 'react';
-import { getAllSubjects } from './services/subjects';
+import { getAllSubjects } from '../services/subjects';
 import { useNavigate } from 'react-router-dom';
 
 export default function SubjectsToRate() {
