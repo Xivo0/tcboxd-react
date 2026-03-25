@@ -42,7 +42,7 @@ export default function ListeMatieres() {
       <div className="matieres-grid">
         {filteredSubjects.map(subject => (
           <div key={subject.id} className="matiere-card">
-            <h3 onClick={() => navigate(`/courses/${subject.id}`)} style={{ cursor:'pointer'}}>{subject.name}</h3>
+            <h3 onClick={() => navigate(`/course/${subject.id}`)} style={{ cursor:'pointer'}}>{subject.name}</h3>
             <span>{subject.year}</span>
             <span>{subject.domains?.name}</span>
           </div>
