@@ -1,11 +1,13 @@
 import './ListeMatieres.css';
 import { useEffect, useState } from 'react';
 import { getAllSubjects } from '../services/subjects';
+import { useNavigate } from 'react-router-dom';
 
 export default function ListeMatieres() {
   const [subjects, setSubjects] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedYear, setSelectedYear] = useState<string>('all');
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllSubjects()
@@ -40,7 +42,7 @@ export default function ListeMatieres() {
       <div className="matieres-grid">
         {filteredSubjects.map(subject => (
           <div key={subject.id} className="matiere-card">
-            <h3>{subject.name}</h3>
+            <h3 onClick={() => navigate(`/courses/${subject.id}`)} style={{ cursor:'pointer'}}>{subject.name}</h3>
             <span>{subject.year}</span>
             <span>{subject.domains?.name}</span>
           </div>

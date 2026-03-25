@@ -32,7 +32,7 @@ export default function SubjectsToRate() {
             <h3>{subject.name}</h3>
             <span className="subject-code">{subject.year}</span>
           	{/* Un petit bouton factice pour inviter au clic */}
-            <button className="rate-button" onClick={() => navigate(`/subjects/${subject.id}`)}>Noter</button>
+            <button className="rate-button" onClick={() => navigate(`/course/${subject.id}`)}>Noter</button>
           </div>
         ))}
       </div>
