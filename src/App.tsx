@@ -7,7 +7,7 @@ import SubjectsToRate from './pages/SubjectsToRate';
 import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 import { Routes, Route } from 'react-router-dom';
-import SubjectRankingPage from './pages/SubjectRankingPage';
+import SubjectRankingPage from './pages/RankingPage';
 
 function App() {
 
