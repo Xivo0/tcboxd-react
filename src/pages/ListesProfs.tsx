@@ -36,7 +36,7 @@ export default function ListesProfs() {
               </p>
             )}
             <button className="rate-button" onClick={() => navigate(`/professors/${professor.id}`)}>
-              Noter
+              Plus d'infos
             </button>
           </div>
         ))}
