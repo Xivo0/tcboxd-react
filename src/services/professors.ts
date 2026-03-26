@@ -20,9 +20,7 @@ export async function getProfessorById(id: string) {
     .from('professors')
     .select(`
       *,
-      subject_professors(
-        subjects(id, name)
-      )
+      
     `)
     .eq('id', id)
     .single()
