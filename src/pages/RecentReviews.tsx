@@ -47,7 +47,7 @@ export default function RecentReviews(){
       <div className="scroll-container">
         
         {reviews.map((review) => (
-          <div key={review.id} className="review-card" onClick={()=>navigate(`/course/${review.subject_id}`)} style={{ cursor:'pointer'}}>
+          <div key={review.id} className="review-card" onClick={()=>navigate(`/subjects/${review.subject_id}`)} style={{ cursor:'pointer'}}>
             <h3 >{review.users?.username ?? 'Anonyme'}</h3>
             <p>{review.comment ?? 'Pas de commentaire'}</p>
             <p>Note: {review.user_rating ?? 'N/A'}</p>

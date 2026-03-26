@@ -8,6 +8,7 @@ import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from './lib/supabase';
+import { useEffect, useState } from 'react';
 
 
 
@@ -30,16 +31,31 @@ import SubjectRankingPage from './pages/RankingPage';
 import ListesProfs from './pages/ListesProfs';
 
 function App() {
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Vérifier l'état d'authentification initial
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    // Écouter les changements d'authentification
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription?.unsubscribe();
+  }, []);
+
+  if (loading) return <div>Chargement...</div>;
 
   return (
     <>
-    <button onClick={loginWithGithub}>
-        Se connecter avec Github
-      </button>
-    <button onClick={logout} style={{backgroundColor: 'red'}}>
-  Déconnexion forcée
-      </button>
-    <NavBar />
+    <NavBar user={user} loginWithGithub={loginWithGithub} logout={logout} />
     <Routes>
       <Route path="/" element={
         <div className="app-container">
