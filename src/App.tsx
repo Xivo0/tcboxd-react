@@ -7,12 +7,37 @@ import SubjectsToRate from './pages/SubjectsToRate';
 import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 import { Routes, Route } from 'react-router-dom';
+import { supabase } from './lib/supabase';
+
+
+
+const loginWithGithub = async () => {
+  await supabase.auth.signInWithOAuth({
+    provider: 'github',
+    options: {
+      redirectTo: 'http://localhost:5173/', 
+    },
+  });
+};
+
+const logout = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) console.error("Erreur déconnexion:", error.message);
+  // On force le retour à l'accueil et on vide l'état
+  window.location.href = "/"; 
+};
 import SubjectRankingPage from './pages/RankingPage';
 
 function App() {
 
   return (
     <>
+    <button onClick={loginWithGithub}>
+        Se connecter avec Github
+      </button>
+    <button onClick={logout} style={{backgroundColor: 'red'}}>
+  Déconnexion forcée
+      </button>
     <NavBar />
     <Routes>
       <Route path="/" element={

@@ -32,7 +32,9 @@
   flex: 0 0 auto; 
   
   width: 280px; /* Largeur fixe de la carte */
-  height: 200px; /* Hauteur fixe */
+  min-height: 160px; /* hauteur minimale, le contenu peut augmenter */
+  max-height: 260px; /* empêche une carte de devenir trop grande */
+  box-sizing: border-box; /* inclure le padding dans la taille */
   
   /* Style visuel basé sur ton croquis (bords arrondis, contour) */
   border: 2px solid #000;
@@ -42,10 +44,42 @@
   
   /* Petit effet au survol pour l'interactivité */
   transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden; /* empêche le débordement hors du cadre */
 }
 
 .review-card:hover {
   transform: translateY(-5px); /* Fait légèrement monter la carte au survol */
+}
+
+/* Titres et paragraphes à l'intérieur des cartes pour garder tout propre */
+.review-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.review-card p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  /* Permettre le retour à la ligne et casser les mots trop longs */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Limiter la taille du commentaire pour éviter d'étirer la carte */
+.review-card .comment {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* affiche jusqu'à 3 lignes */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* La ligne séparatrice en bas */

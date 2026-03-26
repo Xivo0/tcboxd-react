@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRecentReviews } from '../services/reviews';
+import { getAllSubjects } from '../services/subjects';
 import './RecentReviews.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,16 +16,25 @@ type Review = {
 
 export default function RecentReviews(){
     const [reviews, setReviews] = useState<Review[]>([])
+    const [subjectsMap, setSubjectsMap] = useState<Record<string,string>>({})
     const navigate = useNavigate()
 
     useEffect(()=>{
       let mounted = true
-      getRecentReviews(12)
-        .then((data)=>{
-          if(mounted && data) setReviews(data as Review[])
+      Promise.all([getRecentReviews(12), getAllSubjects()])
+        .then(([reviewsData, subjectsData])=>{
+          if(!mounted) return
+          if(reviewsData) setReviews(reviewsData as Review[])
+          const map: Record<string,string> = {}
+          if(subjectsData && Array.isArray(subjectsData)){
+            subjectsData.forEach((s: any)=>{
+              if(s && s.id) map[s.id] = s.name
+            })
+          }
+          setSubjectsMap(map)
         })
         .catch((err)=>{
-          console.error('Failed to load recent reviews', err)
+          console.error('Failed to load recent reviews or subjects', err)
         })
       return ()=>{ mounted = false }
     },[])
@@ -41,8 +51,8 @@ export default function RecentReviews(){
             <h3 >{review.users?.username ?? 'Anonyme'}</h3>
             <p>{review.comment ?? 'Pas de commentaire'}</p>
             <p>Note: {review.user_rating ?? 'N/A'}</p>
-			<p>Note DS: {review.ds_grade ?? 'N/A'}</p>
-
+            <p>Note DS: {review.ds_grade ?? 'N/A'}</p>
+            <p>Matière: {subjectsMap[review.subject_id ?? ''] ?? 'Inconnue'}</p>
           </div>
         ))}
 
