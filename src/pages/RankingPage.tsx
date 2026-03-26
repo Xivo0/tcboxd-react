@@ -34,13 +34,13 @@ export default function RankingPage() {
             className={`main-tab-button ${activeTab === 'subjects' ? 'active' : ''}`}
             onClick={() => setActiveTab('subjects')}
           >
-            📚 Matières
+             Matières
           </button>
           <button 
             className={`main-tab-button ${activeTab === 'users' ? 'active' : ''}`}
             onClick={() => setActiveTab('users')}
           >
-            🏆 Utilisateurs
+             Utilisateurs
           </button>
         </div>
       </div>

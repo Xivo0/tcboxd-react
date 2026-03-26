@@ -1,4 +1,4 @@
-import './ListeMatieres.css';
+import './ListesProfs.css';
 import { useEffect, useState } from 'react';
 import { getAllProfessors } from '../services/professors';
 import { useNavigate } from 'react-router-dom';
