@@ -26,6 +26,8 @@ const logout = async () => {
   // On force le retour à l'accueil et on vide l'état
   window.location.href = "/"; 
 };
+import SubjectRankingPage from './pages/RankingPage';
+import ListesProfs from './pages/ListesProfs';
 
 function App() {
 
@@ -61,6 +63,23 @@ function App() {
           <h2>Détails du cours</h2>
         </div>
       } />
+
+    <Route path="/professeurs" element={
+  		<div className="app-container">
+    		<ListesProfs />
+  		</div>
+	  } />
+      <Route path="/profs/:id" element = {
+        <div className="app-container">
+          <h2>Statistiques du professeur</h2>
+        </div>
+      } />
+
+      <Route path='/Classement' element={
+        <div className="app-container">
+          <SubjectRankingPage/>
+        </div>
+      }/>
 	  <Route path="/subjects/:id" element={
   		<div className="app-container">
     		<Matieres />

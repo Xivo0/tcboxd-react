@@ -31,12 +31,12 @@ export default function NavBar() {
           >
             <Nav.Link as={Link} to='/'>Accueil</Nav.Link>
             <Nav.Link as={Link} to='/classement'>Classement</Nav.Link>
-            <NavDropdown title="Matières" id="navbarScrollingDropdown">
-              <NavDropdown.Item as={Link} to="/course/tc-ts-01">Traitement du Signal</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/course/tc-res-02">Réseaux</NavDropdown.Item>
-              <NavDropdown.Divider />
+            <NavDropdown title="Parcourir" id="navbarScrollingDropdown">
               <NavDropdown.Item as={Link} to="/matieres">
                 Voir toutes les matières
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/professeurs">
+                Voir tous les professeurs
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
