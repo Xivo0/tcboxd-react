@@ -7,6 +7,7 @@ import SubjectsToRate from './pages/SubjectsToRate';
 import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 import { Routes, Route } from 'react-router-dom';
+import SubjectRankingPage from './pages/RankingPage';
 
 function App() {
 
@@ -36,6 +37,12 @@ function App() {
           <h2>Détails du cours</h2>
         </div>
       } />
+
+      <Route path='/Classement' element={
+        <div className="app-container">
+          <SubjectRankingPage/>
+        </div>
+      }/>
 	  <Route path="/subjects/:id" element={
   		<div className="app-container">
     		<Matieres />

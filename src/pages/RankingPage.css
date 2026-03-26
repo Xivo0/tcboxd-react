@@ -1,0 +1,180 @@
+/* --- CONTENEUR GLOBAL --- */
+.ranking-page-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: sans-serif;
+  color: #333;
+}
+
+/* --- EN-TÊTE --- */
+.ranking-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.ranking-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #3B0764; 
+}
+
+.ranking-header p {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+/* --- LES ONGLETS --- */
+.main-tabs {
+  display: flex;
+  justify-content: center;
+  background-color: #f3f4f6;
+  padding: 6px;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.main-tab-button {
+  flex: 1; /* Chaque bouton prend la moitié de l'espace */
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Style de l'onglet cliqué */
+.main-tab-button.active {
+  background-color: #fff;
+  color: #3B0764;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- LE LEADERBOARD (Lignes communes) --- */
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+}
+
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leaderboard-row:hover {
+  transform: translateX(5px); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border-color: #d1d5db;
+}
+
+/* --- LE BADGE DE RANG (1er, 2ème, etc.) --- */
+.rank-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 20px;
+  flex-shrink: 0; 
+}
+
+.rank-1 {
+  background-color: #FEF3C7; 
+  color: #D97706; 
+  box-shadow: 0 0 0 2px #FDE68A; 
+}
+
+.rank-2 {
+  background-color: #F3F4F6;
+  color: #4B5563; 
+  box-shadow: 0 0 0 2px #E5E7EB;
+}
+
+.rank-3 {
+  background-color: #FFEDD5; 
+  color: #C2410C; 
+  box-shadow: 0 0 0 2px #FED7AA;
+}
+
+/* --- INFOS CENTRALES (Matière ou User) --- */
+.list-info {
+  flex-grow: 1; 
+}
+
+.list-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+}
+
+.info-badge {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Petite subtilité de couleur si c'est un rôle d'utilisateur */
+.user-role {
+  background-color: #f3e8ff;
+  color: #7e22ce;
+}
+
+/* --- SCORES DROITE (Notes ou Points) --- */
+.list-score {
+  text-align: right;
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.score-number {
+  font-size: 1.8rem; 
+  font-weight: 800;  
+  color: #3B0764;    
+  line-height: 1;    
+}
+
+.score-max {
+  font-size: 0.9rem;
+  color: #9ca3af;    
+  font-weight: 600;
+}
+
+.score-subtitle {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 600px) {
+  .leaderboard-row { padding: 12px 16px; }
+  .list-info h3 { font-size: 1rem; }
+  .rank-badge {
+    width: 35px; height: 35px;
+    font-size: 1rem; margin-right: 12px;
+  }
+  .score-number { font-size: 1.4rem; }
+}
