@@ -15,6 +15,7 @@ export default function Matieres() {
 
   const [username, setUsername] = useState<string>('');
   const [rating, setRating] = useState<number>(5);
+  const [dsGrade, setDsGrade] = useState<number>(0);
   const [comment, setComment] = useState<string>('');
   const [submitting, setSubmitting] = useState<boolean>(false);
 
@@ -38,11 +39,12 @@ export default function Matieres() {
     if (!id) return;
     setSubmitting(true);
     try {
-      await addReview(username, id, rating, 0, comment, false, 0.0);
+      await addReview(username, id, rating, dsGrade, comment, false, 0.0);
       const updatedReviews = await getReviewsBySubject(id);
       setReviews(updatedReviews);
       setUsername('');
       setRating(5);
+      setDsGrade(0);
       setComment('');
     } catch (err) {
       console.error('Erreur envoi avis:', err);
@@ -87,13 +89,22 @@ export default function Matieres() {
             />
           </div>
           <div className="form-group">
-            <label>Note (/10)</label>
+            <label>Note (/5)</label>
             <input
               type="number"
               min={0}
-              max={10}
+              max={5}
               value={rating}
               onChange={e => setRating(Number(e.target.value))}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Note DS(/20)</label>
+            <input
+              type="number"
+              value={dsGrade}
+              onChange={e => setDsGrade(Number(e.target.value))}
               required
             />
           </div>

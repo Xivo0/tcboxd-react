@@ -26,6 +26,7 @@ const logout = async () => {
   // On force le retour à l'accueil et on vide l'état
   window.location.href = "/"; 
 };
+import SubjectRankingPage from './pages/RankingPage';
 
 function App() {
 
@@ -61,6 +62,12 @@ function App() {
           <h2>Détails du cours</h2>
         </div>
       } />
+
+      <Route path='/Classement' element={
+        <div className="app-container">
+          <SubjectRankingPage/>
+        </div>
+      }/>
 	  <Route path="/subjects/:id" element={
   		<div className="app-container">
     		<Matieres />
