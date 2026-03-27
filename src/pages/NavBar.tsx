@@ -22,7 +22,7 @@ export default function NavBar() {
     <Navbar expand="lg" className="custom-navbar">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
-          <img src={icone} alt='icone' className='logo' />TCBoxd
+          <img src={icone} alt='icone' className='logo' />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
