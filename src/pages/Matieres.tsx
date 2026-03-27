@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getSubjectById } from '../services/subjects';
 import { getReviewsBySubject } from '../services/reviews';
 import { supabase } from '../lib/supabase';
+import { updateAverageRating } from '../services/subjects';
 
 // Fonction outil hors du composant
 const deleteReview = async (reviewId: string) => {
@@ -60,6 +61,7 @@ export default function Matieres() {
         comment: comment 
       }]);
       if (error) throw error;
+	  await updateAverageRating(id); 
 
       await loadData(); // Rafraîchit la liste
       setComment('');
