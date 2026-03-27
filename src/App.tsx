@@ -18,7 +18,7 @@ const loginWithGithub = async () => {
   await supabase.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: 'http://localhost:5173/',
+      redirectTo: window.location.origin + '/',
     },
   });
 };

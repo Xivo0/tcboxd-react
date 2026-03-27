@@ -3,14 +3,13 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import icone from '../assets/icon.png';
 import '../App.css';
 import type React from 'react';
 
 export default function NavBar() {
-  const navigate = useNavigate();
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Recherche lancée !");
@@ -30,7 +29,7 @@ export default function NavBar() {
             navbarScroll
           >
             <Nav.Link as={Link} to='/'>Accueil</Nav.Link>
-            <Nav.Link as={Link} to='/classement'>Classement</Nav.Link>
+            <Nav.Link as={Link} to='/classement'>Classements</Nav.Link>
             <NavDropdown title="Parcourir" id="navbarScrollingDropdown">
               <NavDropdown.Item as={Link} to="/matieres">
                 Voir toutes les matières
