@@ -1,0 +1,57 @@
+body {
+    background-color: #28104a;
+}
+
+/* Navbar background color */
+.navbar {
+  background-color: #23034E !important;
+}
+
+/* Logo styling */
+.navbar .logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* Navbar brand text color */
+.navbar-brand {
+  color: #fff !important;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Navigation links color */
+.navbar-nav .nav-link {
+  color: #fff !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ddd !important;
+}
+
+/* Active nav link */
+.navbar-nav .nav-link.active {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+/* Search button styling */
+.navbar .btn-outline-success {
+  color: #fff !important;
+  border-color: #cc53b6 !important;
+  background-color: #f28be2 !important;
+}
+
+.navbar .btn-outline-success:hover {
+  color: #fff !important;
+  background-color: #b82bce !important;
+  border-color: #9219a0 !important;
+}
+
+/* Search input styling */
+.navbar .form-control {
+  background-color: #fff !important;
+  border: 1px solid #ddd !important;
+  color: #000 !important;
+}
