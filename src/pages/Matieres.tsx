@@ -52,6 +52,12 @@ export default function Matieres() {
     
     setSubmitting(true);
     try {
+      await addReview(username, id, rating, dsGrade, comment, false, 0.0);
+      const updatedReviews = await getReviewsBySubject(id);
+      setReviews(updatedReviews);
+      setUsername('');
+      setRating(5);
+      setDsGrade(0);
       const { error } = await supabase.from('reviews').insert([{ 
         user_id: user.id, 
         subject_id: id, 
@@ -96,6 +102,61 @@ export default function Matieres() {
 
       <section className="matiere-form">
         <h2>Poster un avis</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Pseudo</label>
+            <input
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              placeholder="Votre pseudo"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Note (/5)</label>
+            <input
+              type="number"
+              min={0}
+              max={5}
+              value={rating}
+              onChange={e => setRating(Number(e.target.value))}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Note DS(/20)</label>
+            <input
+              type="number"
+              value={dsGrade}
+              onChange={e => setDsGrade(Number(e.target.value))}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Commentaire</label>
+            <textarea
+              value={comment}
+              onChange={e => setComment(e.target.value)}
+              placeholder="Votre avis sur cette matière..."
+              rows={4}
+              required
+            />
+          </div>
+          <button type="submit" disabled={submitting}>
+            {submitting ? 'Envoi...' : 'Poster mon avis'}
+          </button>
+        </form>
+      </section>
+
+      <section className="matiere-reviews">
+        <h2>Avis ({reviews.length})</h2>
+        {reviews.length === 0 && <p>Aucun avis pour l'instant — soyez le premier !</p>}
+        {reviews.map(review => (
+          <div key={review.id} className="review-card">
+            <div className="review-header">
+              <strong>{review.users?.username ?? 'Anonyme'}</strong>
+              <span className="review-rating">{review.user_rating}/10</span>
         {user ? (
           <form onSubmit={handleSubmit}>
             <p>Posté en tant que : <strong>{user.user_metadata.full_name || user.email}</strong></p>
