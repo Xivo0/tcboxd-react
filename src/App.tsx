@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from './lib/supabase';
+import { useEffect, useState } from 'react';
 
 // Import de tes pages
 import Profil from './pages/ProfilePage'
@@ -31,20 +32,30 @@ const logout = async () => {
 };
 
 function App() {
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription?.unsubscribe();
+  }, []);
+
+  if (loading) return <div>Chargement...</div>;
+
   return (
     <>
       {/* Barre de navigation toujours visible */}
-      <NavBar />
-
-      {/* Interface de connexion rapide (à styliser plus tard) */}
-      <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
-        <button onClick={loginWithGithub}>
-          Se connecter avec Github
-        </button>
-        <button onClick={logout} style={{ backgroundColor: '#ff4d4d', color: 'white', marginLeft: '10px' }}>
-          Déconnexion
-        </button>
-      </div>
+      <NavBar user={user} loginWithGithub={loginWithGithub} logout={logout} />
 
       <Routes>
         {/* Accueil */}
