@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 
-// Import de tes pages
+// Import 
 import Profil from './pages/ProfilePage'
 import NavBar from './pages/NavBar';
 import ListeMatieres from './pages/ListeMatieres';
@@ -11,12 +11,12 @@ import SubjectsToRate from './pages/SubjectsToRate';
 import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 
-// --- FONCTIONS D'AUTH ---
+//  FONCTIONS D'AUTH 
 const loginWithGithub = async () => {
   await supabase.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: 'http://localhost:5173/', 
+      redirectTo: 'http://localhost:5173/', //dynamiquement à ajouter
     },
   });
 };
@@ -30,10 +30,10 @@ const logout = async () => {
 function App() {
   return (
     <>
-      {/* Barre de navigation toujours visible */}
+      { }
       <NavBar />
 
-      {/* Interface de connexion rapide (à styliser plus tard) */}
+      {}
       <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
         <button onClick={loginWithGithub}>
           Se connecter avec Github
@@ -44,7 +44,7 @@ function App() {
       </div>
 
       <Routes>
-        {/* Accueil */}
+        {}
         <Route path="/" element={
           <div className="app-container">
             <RecentReviews/>
