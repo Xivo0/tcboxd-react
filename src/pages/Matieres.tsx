@@ -147,11 +147,6 @@ const ReviewsList = ({ reviews, currentUser, onDelete, navigate }: any) => (
           )}
         </div>
         <p>{r.comment}</p>
-        {currentUser && currentUser.id === r.user_id && (
-          <button className="review-delete-button" onClick={() => onDelete(r.id)}>
-            Supprimer
-          </button>
-        )}
       </div>
     ))}
   </section>

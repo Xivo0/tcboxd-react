@@ -47,7 +47,12 @@ export default function RecentReviews(){
       <div className="scroll-container">
         
         {reviews.map((review) => (
-          <div key={review.id} className="review-card">
+          <div
+            key={review.id}
+            className="review-card"
+            onClick={() => navigate(`/subjects/${review.subject_id}`)}
+            style={{ cursor: 'pointer' }}
+          >
             <h3
               onClick={(e) => {
                 e.stopPropagation();
@@ -60,10 +65,7 @@ export default function RecentReviews(){
             <p>{review.comment ?? 'Pas de commentaire'}</p>
             <p>Note: {review.user_rating ?? 'N/A'}</p>
             <p>Note DS: {review.ds_grade ?? 'N/A'}</p>
-            <p
-              onClick={() => navigate(`/subjects/${review.subject_id}`)}
-              style={{ cursor: 'pointer' }}
-            >
+            <p>
               Matière: {subjectsMap[review.subject_id ?? ''] ?? 'Inconnue'}
             </p>
           </div>
