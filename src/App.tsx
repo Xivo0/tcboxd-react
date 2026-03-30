@@ -12,13 +12,13 @@ import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 import SubjectRankingPage from './pages/RankingPage';
 import ListesProfs from './pages/ListesProfs';
+import ProfessorPage from './pages/ProfessorPage';
 
 //  FONCTIONS D'AUTH 
 const loginWithGithub = async () => {
   await supabase.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: 'http://localhost:5173/', //dynamiquement à ajouter
       redirectTo: window.location.origin + '/',
     },
   });
@@ -34,10 +34,8 @@ const logout = async () => {
 function App() {
   return (
     <>
-      { }
       <NavBar />
 
-      {}
       <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
         <button onClick={loginWithGithub}>
           Se connecter avec Github
@@ -92,10 +90,10 @@ function App() {
           </div>
         } />
 
-        {/* Statistiques d'un professeur */}
-        <Route path="/profs/:id" element = {
+        {/* Page détaillée d'un professeur */}
+        <Route path="/professeurs/:id" element={
           <div className="app-container">
-            <h2>Statistiques du professeur</h2>
+            <ProfessorPage />
           </div>
         } />
 

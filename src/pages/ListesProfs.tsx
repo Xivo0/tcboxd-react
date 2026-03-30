@@ -35,7 +35,7 @@ export default function ListesProfs() {
                 {professor.subject_professors.map((sp: any) => sp.subjects.name).join(', ')}
               </p>
             )}
-            <button className="rate-button" onClick={() => navigate(`/professors/${professor.id}`)}>
+            <button className="rate-button" onClick={() => navigate(`/professeurs/${professor.id}`)}>
               Plus d'infos
             </button>
           </div>
