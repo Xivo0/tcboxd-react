@@ -13,6 +13,7 @@ import Matieres from './pages/Matieres';
 import SubjectRankingPage from './pages/RankingPage';
 import ListesProfs from './pages/ListesProfs';
 import PublicProfilePage from './pages/PublicProfile';
+import ProfessorPage from './pages/ProfessorPage';
 
 //  FONCTIONS D'AUTH 
 const loginWithGithub = async () => {
@@ -35,7 +36,6 @@ function App() {
   const location = useLocation()
   return (
     <>
-      { }
       <NavBar />
 
       {}
@@ -49,6 +49,14 @@ function App() {
           </button>
         </div>
       )}
+      <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
+        <button onClick={loginWithGithub}>
+          Se connecter avec Github
+        </button>
+        <button onClick={logout} style={{ backgroundColor: '#ff4d4d', color: 'white', marginLeft: '10px' }}>
+          Déconnexion
+        </button>
+      </div>
 
       <Routes>
         {}
@@ -101,10 +109,10 @@ function App() {
           </div>
           } />
 
-        {/* Statistiques d'un professeur */}
-        <Route path="/profs/:id" element = {
+        {/* Page détaillée d'un professeur */}
+        <Route path="/professeurs/:id" element={
           <div className="app-container">
-            <h2>Statistiques du professeur</h2>
+            <ProfessorPage />
           </div>
         } />
 

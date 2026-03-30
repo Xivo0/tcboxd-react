@@ -44,15 +44,15 @@ body {
 button {
   margin-top: 10px;
   padding: 8px 12px;
-  background-color: #aa3bff;
-  color: white;
-  border: none;
+  background-color: white;
+  color: #180c39;
+  border: 1px solid #180c39;
   border-radius: 4px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #8a2be2;
+  background-color: #f5f5f5;
 }
 
 .title{
