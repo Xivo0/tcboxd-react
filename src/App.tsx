@@ -12,6 +12,7 @@ import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 import SubjectRankingPage from './pages/RankingPage';
 import ListesProfs from './pages/ListesProfs';
+import PublicProfilePage from './pages/PublicProfile';
 import ProfessorPage from './pages/ProfessorPage';
 
 //  FONCTIONS D'AUTH 
@@ -89,6 +90,12 @@ function App() {
             <ListesProfs />
           </div>
         } />
+        {/* Profil public d'un utilisateur */}
+        <Route path="/profile-public/:username" element={
+          <div className="app-container">
+            <PublicProfilePage />
+          </div>
+          } />
 
         {/* Page détaillée d'un professeur */}
         <Route path="/professeurs/:id" element={
