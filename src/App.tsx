@@ -1,6 +1,5 @@
 import './App.css';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { supabase } from './lib/supabase';
+import { Routes, Route } from 'react-router-dom';
 
 // Import 
 import Profil from './pages/ProfilePage'
@@ -15,48 +14,10 @@ import ListesProfs from './pages/ListesProfs';
 import PublicProfilePage from './pages/PublicProfile';
 import ProfessorPage from './pages/ProfessorPage';
 
-//  FONCTIONS D'AUTH 
-const loginWithGithub = async () => {
-  await supabase.auth.signInWithOAuth({
-    provider: 'github',
-    options: {
-      redirectTo: window.location.origin + '/',
-    },
-  });
-};
-
-const logout = async () => {
-  const { error } = await supabase.auth.signOut();
-  if (error) console.error("Erreur déconnexion:", error.message);
-  // On force le retour à l'accueil et on vide l'état
-  window.location.href = "/";
-};
-
 function App() {
-  const location = useLocation()
   return (
     <>
       <NavBar />
-
-      {}
-      {location.pathname === '/profile' && (
-        <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
-          <button onClick={loginWithGithub}>
-            Se connecter avec Github
-          </button>
-          <button onClick={logout} style={{ backgroundColor: '#ff4d4d', color: 'white', marginLeft: '10px' }}>
-            Déconnexion
-          </button>
-        </div>
-      )}
-      <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
-        <button onClick={loginWithGithub}>
-          Se connecter avec Github
-        </button>
-        <button onClick={logout} style={{ backgroundColor: '#ff4d4d', color: 'white', marginLeft: '10px' }}>
-          Déconnexion
-        </button>
-      </div>
 
       <Routes>
         {}
