@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase'
+import { addFavoriteProfessor, removeFavoriteProfessor } from './users'
 
 // Récupérer tous les profs avec leurs matières
 export async function getAllProfessors() {
@@ -31,18 +32,19 @@ export async function getProfessorById(id: string) {
 }
 
 export async function getProfessorLikeCount(professorId: string) {
-  const { count, error } = await supabase
-    .from('user_favorite_professors')
-    .select('*', { count: 'exact', head: true })
-    .eq('professor_id', professorId)
+  const { data, error } = await supabase
+    .from('professors')
+    .select('favorites_count')
+    .eq('id', professorId)
+    .single()
   if (error) throw error
-  return count ?? 0
+  return data?.favorites_count ?? 0
 }
 
 export async function isProfessorLikedByUser(professorId: string, userId: string) {
   const { data, error } = await supabase
     .from('user_favorite_professors')
-    .select('id')
+    .select('user_id, professor_id')
     .eq('professor_id', professorId)
     .eq('user_id', userId)
     .maybeSingle()
@@ -51,26 +53,13 @@ export async function isProfessorLikedByUser(professorId: string, userId: string
 }
 
 export async function toggleProfessorLike(professorId: string, userId: string) {
-  const { data, error } = await supabase
-    .from('user_favorite_professors')
-    .select('id')
-    .eq('professor_id', professorId)
-    .eq('user_id', userId)
-    .maybeSingle()
-  if (error) throw error
+  const isLiked = await isProfessorLikedByUser(professorId, userId)
 
-  if (data) {
-    const { error: deleteError } = await supabase
-      .from('user_favorite_professors')
-      .delete()
-      .eq('id', data.id)
-    if (deleteError) throw deleteError
+  if (isLiked) {
+    await removeFavoriteProfessor(userId, professorId)
     return false
+  } else {
+    await addFavoriteProfessor(userId, professorId)
+    return true
   }
-
-  const { error: insertError } = await supabase
-    .from('user_favorite_professors')
-    .insert([{ user_id: userId, professor_id: professorId }])
-  if (insertError) throw insertError
-  return true
 }
