@@ -5,10 +5,14 @@ body {
 /* Navbar background color */
 .navbar {
   background-color: #23034E !important;
+  min-height: 100px; /* Augmente la hauteur pour accommoder le logo plus grand */
 }
 
 /* Logo styling */
 .navbar .logo {
+  width: 150px; /* Logo plus grand */
+  height: 80px;
+  margin-right: 15px; /* Plus d'espace autour du logo */
   width: 40px;
   height: 40px;
   margin-right: 10px;
@@ -18,12 +22,26 @@ body {
 .navbar-brand {
   color: #fff !important;
   font-weight: bold;
+  font-size: 2rem; /* Police plus grande */
   font-size: 1.5rem;
 }
 
 /* Navigation links color */
 .navbar-nav .nav-link {
   color: #fff !important;
+  font-size: 1.2rem;
+  transition: all 0.3s ease; /* Animation fluide */
+  padding: 30px 12px !important; /* Padding vertical important pour couvrir toute la hauteur */
+  border-radius: 4px; /* Coins arrondis */
+  height: 100%; /* Prend toute la hauteur */
+  display: flex;
+  align-items: center; /* Centre verticalement le texte */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #23034E !important; /* Couleur contrastée */
+  background-color: rgba(255, 255, 255, 0.9) !important; /* Fond plus opaque pour couvrir toute la hauteur */
+  transform: scale(1.02); /* Légère augmentation */
 }
 
 .navbar-nav .nav-link:hover {
@@ -34,6 +52,7 @@ body {
 .navbar-nav .nav-link.active {
   color: #fff !important;
   font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Search button styling */
@@ -41,12 +60,20 @@ body {
   color: #fff !important;
   border-color: #cc53b6 !important;
   background-color: #f28be2 !important;
+  transition: all 0.3s ease; /* Animation fluide */
+  border-radius: 20px; /* Plus arrondi */
+  padding: 8px 16px !important; /* Padding réduit pour correspondre à l'input */
+  height: auto; /* Ajuste automatiquement la hauteur */
+  display: flex;
+  align-items: center; /* Centre le texte */
 }
 
 .navbar .btn-outline-success:hover {
   color: #fff !important;
   background-color: #b82bce !important;
   border-color: #9219a0 !important;
+  transform: scale(1.02); /* Légère augmentation */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
 }
 
 /* Search input styling */
@@ -54,4 +81,40 @@ body {
   background-color: #fff !important;
   border: 1px solid #ddd !important;
   color: #000 !important;
+  height: auto; /* Ajuste la hauteur automatiquement */
+  padding: 8px 12px !important; /* Padding réduit pour une taille plus petite */
+  border-radius: 20px; /* Coins arrondis */
+}
+
+/* Dropdown menu styling - ouverture au survol */
+.navbar .dropdown:hover .dropdown-menu {
+  display: block !important; /* Force l'affichage au survol */
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Transition à 0.5s */
+}
+
+.navbar .dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px); /* Décalage plus important pour un effet plus marqué */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Transition à 0.5s */
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
+  background-color: #fff;
+  margin-top: 12px; /* Marge plus importante */
+}
+
+.navbar .dropdown-item {
+  color: #333 !important;
+  padding: 12px 20px;
+  transition: all 0.7s ease;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #f8f9fa !important;
+  color: #23034E !important;
+  transform: translateX(5px);
 }
