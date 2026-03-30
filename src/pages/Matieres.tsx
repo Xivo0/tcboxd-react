@@ -111,7 +111,7 @@ export default function Matieres() {
               <label>Commentaire :</label>
               <textarea value={comment} onChange={e => setComment(e.target.value)} required rows={4} />
             </div>
-            <button type="submit" disabled={submitting}>{submitting ? 'Envoi...' : 'Poster mon avis'}</button>
+            <button type="submit" className="primary-button" disabled={submitting}>{submitting ? 'Envoi...' : 'Poster mon avis'}</button>
           </form>
         ) : (
           <p>Connecte-toi pour poster.</p>
@@ -132,13 +132,13 @@ const ReviewsList = ({ reviews, currentUser, onDelete }: any) => (
       <div key={r.id} className="review-card">
         <div className="review-header">
           <strong>{r.users?.username ?? 'Anonyme'}</strong>
-          {currentUser && currentUser.id === r.user_id && (
-            <button onClick={() => onDelete(r.id)} style={{ color: 'red', marginLeft: '10px' }}>
-              Supprimer
-            </button>
-          )}
         </div>
         <p>{r.comment}</p>
+        {currentUser && currentUser.id === r.user_id && (
+          <button className="review-delete-button" onClick={() => onDelete(r.id)}>
+            Supprimer
+          </button>
+        )}
       </div>
     ))}
   </section>

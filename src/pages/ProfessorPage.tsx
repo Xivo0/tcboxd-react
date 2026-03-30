@@ -76,9 +76,9 @@ export default function ProfessorPage() {
         <h1>{professor.name}</h1>
         {professor.title && <p className="prof-title">{professor.title}</p>}
         <div className="prof-meta">
-          <span className="prof-likes">👍 {likeCount} like{likeCount > 1 ? 's' : ''}</span>
+          <span className="prof-likes"> {likeCount} like{likeCount > 1 ? 's' : ''}</span>
           <button className="like-button" onClick={handleToggleLike} disabled={submitting}>
-            {liked ? 'Retirer le like' : 'Liker le professeur'}
+            {liked ? 'Retirer des favoris' : 'Mettre en favoris'}
           </button>
         </div>
       </section>
