@@ -9,6 +9,7 @@
     text-align: center;
     margin-bottom: 40px;
     font-family: sans-serif;
+    color : #fff !important;
 }
 
 .podiums-container{
@@ -27,7 +28,7 @@
 .podium-title{
     font-size: 1.1rem;
     margin-bottom: 20px;
-    color: #3b0764;
+    color: #fff !important;
 }
 
 .podium{

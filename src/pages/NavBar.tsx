@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import icone from '../assets/icon.png';
 import '../App.css';
+import './NavBar.css';
 import type React from 'react';
 
 export default function NavBar() {
@@ -16,10 +17,10 @@ export default function NavBar() {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="custom-navbar">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
-          <img src={icone} alt='icone' className='logo' />TCBoxd
+          <img src={icone} alt='icone' className='logo' />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

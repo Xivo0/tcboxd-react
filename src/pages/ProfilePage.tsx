@@ -90,7 +90,7 @@ export default function ProfilePage() {
       <div className="profile-header">
         <img src={user.avatarUrl} alt="Avatar" className="profile-avatar" />
         <div className="profile-info">
-          <h2>{user.name}</h2>
+          <h2 className="profile-name">{user.name}</h2>
           <p className="profile-email">{user.email}</p>
           <span className="profile-badge">{user.role}</span>
         </div>
@@ -107,14 +107,14 @@ export default function ProfilePage() {
                 
                 {/* Titre de la matière */}
                 <div className="card-header">
-                  <h4>{review.subjects?.name || "Matière inconnue"}</h4>
+                  <h4 className="subject-name">{review.subjects?.name || "Matière inconnue"}</h4>
                   {/* On affiche "TC" par défaut si pas de code */}
                   <span className="subject-badge">TC</span> 
                 </div>
 
                 {/* Note globale (Étoiles) */}
                 <div className="card-rating">
-                  <span className="label">Avis global :</span>
+                  <span className="rating-label">Avis global :</span>
                   {renderStars(review.user_rating)} 
                   <span className="rating-number">{review.user_rating}/10</span>
                 </div>

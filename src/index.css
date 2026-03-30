@@ -38,8 +38,8 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
+    --text: #fff;
+    --text-h: #fff;
     --bg: #0B1622;
     --border: #2e303a;
     --code-bg: #1f2028;
@@ -79,6 +79,7 @@ h2 {
   font-family: var(--heading);
   font-weight: 500;
   color: var(--text-h);
+  color: #fff !important;
 }
 
 h1 {
