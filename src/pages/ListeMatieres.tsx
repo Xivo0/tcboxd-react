@@ -1,11 +1,14 @@
 import './ListeMatieres.css';
 import { useEffect, useState } from 'react';
 import { getAllSubjects } from '../services/subjects';
+import { useNavigate } from 'react-router-dom';
 
 export default function ListeMatieres() {
   const [subjects, setSubjects] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedYear, setSelectedYear] = useState<string>('all');
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     getAllSubjects()
@@ -43,6 +46,7 @@ export default function ListeMatieres() {
             <h3>{subject.name}</h3>
             <span>{subject.year}</span>
             <span>{subject.domains?.name}</span>
+			<button className="rate-button" onClick={() => navigate(`/subjects/${subject.id}`)}>Noter</button>
           </div>
         ))}
       </div>
