@@ -6,7 +6,7 @@ import { getReviewsBySubject } from '../services/reviews';
 import { supabase } from '../lib/supabase';
 
 // Fonction outil hors du composant
-const deleteReview = async (reviewId) => {
+const deleteReview = async (reviewId: string) => {
   return await supabase.from('reviews').delete().eq('id', reviewId);
 };
 
@@ -81,13 +81,17 @@ export default function Matieres() {
   if (loading) return <p>Chargement...</p>;
   if (!subject) return <p>Matière introuvable</p>;
 
+  const averageDsGrade = reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.ds_grade, 0) / reviews.length).toFixed(2) : 'N/A';
+  const averageUserRating = reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.user_rating, 0) / reviews.length).toFixed(2) : 'N/A';
+
   return (
     <div className="matiere-page">
       <button className="back-button" onClick={() => navigate(-1)}>← Retour</button>
 
       <section className="matiere-header">
         <h1>{subject.name}</h1>
-        <p><strong>Note moyenne :</strong> {subject.average_user_rating}/10</p>
+        <p><strong>Note moyenne :</strong> {averageUserRating}/10</p>
+        <p><strong>Note moyenne DS :</strong> {averageDsGrade}/20</p>
       </section>
 
       <section className="matiere-form">
@@ -95,13 +99,22 @@ export default function Matieres() {
         {user ? (
           <form onSubmit={handleSubmit}>
             <p>Posté en tant que : <strong>{user.user_metadata.full_name || user.email}</strong></p>
-            <input type="number" min={0} max={10} value={rating} onChange={e => setRating(Number(e.target.value))} required />
-            <input type="number" min={0} max={20} value={dsGrade} onChange={e => setDsGrade(Number(e.target.value))} required />
-            <textarea value={comment} onChange={e => setComment(e.target.value)} required rows={4} />
+            <div className="form-group">
+              <label>Note (0-10) :</label>
+              <input type="number" min={0} max={10} value={rating} onChange={e => setRating(Number(e.target.value))} required />
+            </div>
+            <div className="form-group">
+              <label>Note DS (0-20) :</label>
+              <input type="number" min={0} max={20} value={dsGrade} onChange={e => setDsGrade(Number(e.target.value))} required />
+            </div>
+            <div className="form-group">
+              <label>Commentaire :</label>
+              <textarea value={comment} onChange={e => setComment(e.target.value)} required rows={4} />
+            </div>
             <button type="submit" disabled={submitting}>{submitting ? 'Envoi...' : 'Poster mon avis'}</button>
           </form>
         ) : (
-          <p>⚠️ Connecte-toi pour poster.</p>
+          <p>Connecte-toi pour poster.</p>
         )}
       </section>
 

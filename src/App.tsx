@@ -10,6 +10,8 @@ import RecentReviews from './pages/RecentReviews';
 import SubjectsToRate from './pages/SubjectsToRate';
 import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
+import SubjectRankingPage from './pages/RankingPage';
+import ListesProfs from './pages/ListesProfs';
 
 //  FONCTIONS D'AUTH 
 const loginWithGithub = async () => {
@@ -17,6 +19,7 @@ const loginWithGithub = async () => {
     provider: 'github',
     options: {
       redirectTo: 'http://localhost:5173/', //dynamiquement à ajouter
+      redirectTo: window.location.origin + '/',
     },
   });
 };
@@ -24,7 +27,8 @@ const loginWithGithub = async () => {
 const logout = async () => {
   const { error } = await supabase.auth.signOut();
   if (error) console.error("Erreur déconnexion:", error.message);
-  window.location.href = "/"; 
+  // On force le retour à l'accueil et on vide l'état
+  window.location.href = "/";
 };
 
 function App() {
@@ -80,6 +84,27 @@ function App() {
             <h2>Détails du cours</h2>
           </div>
         } />
+
+        {/* Liste des professeurs */}
+        <Route path="/professeurs" element={
+          <div className="app-container">
+            <ListesProfs />
+          </div>
+        } />
+
+        {/* Statistiques d'un professeur */}
+        <Route path="/profs/:id" element = {
+          <div className="app-container">
+            <h2>Statistiques du professeur</h2>
+          </div>
+        } />
+
+        {/* Classement des matières */}
+        <Route path='/Classement' element={
+          <div className="app-container">
+            <SubjectRankingPage/>
+          </div>
+        }/>
       </Routes>
     </>
   );

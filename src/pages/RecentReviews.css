@@ -76,6 +76,7 @@
 /* Limiter la taille du commentaire pour éviter d'étirer la carte */
 .review-card .comment {
   display: -webkit-box;
+  line-clamp: 3;
   -webkit-line-clamp: 3; /* affiche jusqu'à 3 lignes */
   -webkit-box-orient: vertical;
   overflow: hidden;
