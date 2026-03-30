@@ -1,32 +1,47 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './RankingPage.css';
+import { getAllSubjects } from '../services/subjects';
+import { getUserRatingStats } from '../services/reviews';
 
 export default function RankingPage() {
   // L'état qui définit quel onglet est actif (par défaut : les matières)
   const [activeTab, setActiveTab] = useState('subjects');
 
-  // Database 1 : Les matières
-  const rankedSubjects = [
-    { id: 1, name: "Mathématiques Avancées", code: "TC101", rating: 9.6, reviews: 124 },
-    { id: 2, name: "Algorithmique & C++", code: "INFO201", rating: 8.9, reviews: 98 },
-    { id: 3, name: "Physique Quantique", code: "PH204", rating: 8.2, reviews: 85 },
-    { id: 4, name: "Réseaux & Télécoms", code: "RT301", rating: 7.5, reviews: 110 },
-  ];
+  const [rankedSubjects, setRankedSubjects] = useState<any[]>([])
+  const [userStats, setUserStats] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
 
-  // Database 2 : Les utilisateurs (ex: les plus actifs ou les meilleurs contributeurs)
-  const rankedUsers = [
-    { id: 1, name: "Alexandre Dupont", role: "Top Contributeur", points: 1450 },
-    { id: 2, name: "Sophie Martin", role: "Expert Physique", points: 1220 },
-    { id: 3, name: "Marc Tremblay", role: "Élève Actif", points: 980 },
-    { id: 4, name: "Léo Garcia", role: "Nouvel Arrivant", points: 450 },
-  ];
+  useEffect(()=>{
+    let mounted = true
+    setLoading(true)
+    setError(null)
+
+    Promise.all([getAllSubjects(), getUserRatingStats()])
+      .then(([subjectsData, usersStats]) => {
+        if(!mounted) return
+        const subs = Array.isArray(subjectsData) ? subjectsData.slice() : []
+        subs.sort((a: any, b: any) => (b.average_user_rating ?? 0) - (a.average_user_rating ?? 0))
+        setRankedSubjects(subs)
+
+        const users = Array.isArray(usersStats) ? usersStats : []
+        setUserStats(users)
+      })
+      .catch((err)=>{
+        console.error('Failed to load rankings', err)
+        if(mounted) setError(String(err?.message ?? err))
+      })
+      .finally(()=>{ if(mounted) setLoading(false) })
+
+    return ()=>{ mounted = false }
+  },[])
 
   return (
     <div className="ranking-page-container">
       
       <div className="ranking-header">
         <h1>Classements</h1>
-        <p>Découvrez les meilleures matières et les étudiants les plus actifs.</p>
+    
         
         {/* LES ONGLETS PRINCIPAUX */}
         <div className="main-tabs">
@@ -46,9 +61,11 @@ export default function RankingPage() {
       </div>
 
       <div className="leaderboard">
-        
+        {loading && <p>Chargement des classements...</p>}
+        {error && <p style={{color:'red'}}>Erreur: {error}</p>}
+
         {/* --- AFFICHAGE SI L'ONGLET "MATIÈRES" EST ACTIF --- */}
-        {activeTab === 'subjects' && rankedSubjects.map((subject, index) => {
+        {activeTab === 'subjects' && rankedSubjects.map((subject: any, index: number) => {
           const rank = index + 1;
           return (
             <div key={`sub-${subject.id}`} className="leaderboard-row">
@@ -56,41 +73,55 @@ export default function RankingPage() {
               
               <div className="list-info">
                 <h3>{subject.name}</h3>
-                <span className="info-badge">{subject.code}</span>
+                
               </div>
               
               <div className="list-score">
                 <div className="score-number">
-                  {subject.rating.toFixed(1)} <span className="score-max">/ 10</span>
+                  {(subject.average_user_rating ?? 0).toFixed(1)} <span className="score-max">/ 10</span>
                 </div>
-                <div className="score-subtitle">{subject.reviews} avis</div>
+                <div className="score-subtitle">{subject.reviews_count ?? ''} avis</div>
               </div>
             </div>
           );
         })}
 
         {/* --- AFFICHAGE SI L'ONGLET "UTILISATEURS" EST ACTIF --- */}
-        {activeTab === 'users' && rankedUsers.map((user, index) => {
-          const rank = index + 1;
-          return (
-            <div key={`usr-${user.id}`} className="leaderboard-row">
-              <div className={`rank-badge rank-${rank}`}>{rank}</div>
-              
-              <div className="list-info">
-                <h3>{user.name}</h3>
-                {/* On réutilise le style du badge pour le rôle de l'utilisateur */}
-                <span className="info-badge user-role">{user.role}</span>
-              </div>
-              
-              <div className="list-score">
-                <div className="score-number">
-                  {user.points} <span className="score-max">pts</span>
+        {activeTab === 'users' && (
+          <div className="users-leaderboards" style={{display:'flex', gap: '24px'}}>
+            <div style={{flex:1}}>
+              <h3>Suceurs (note moyenne la plus élevée)</h3>
+              {userStats.slice().sort((a,b)=>b.avg - a.avg).map((u:any, i:number)=> (
+                <div key={`su-${u.user_id}-${i}`} className="leaderboard-row">
+                  <div className={`rank-badge rank-${i+1}`}>{i+1}</div>
+                  <div className="list-info">
+                    <h3>{u.username ?? 'Anonyme'}</h3>
+                  </div>
+                  <div className="list-score">
+                    <div className="score-number">{u.avg} <span className="score-max">/10</span></div>
+                    <div className="score-subtitle">{u.count} avis</div>
+                  </div>
                 </div>
-                <div className="score-subtitle">Contribution</div>
-              </div>
+              ))}
             </div>
-          );
-        })}
+
+            <div style={{flex:1}}>
+              <h3>Haters (note moyenne la plus basse)</h3>
+              {userStats.slice().sort((a,b)=>a.avg - b.avg).map((u:any, i:number)=> (
+                <div key={`ha-${u.user_id}-${i}`} className="leaderboard-row">
+                  <div className={`rank-badge rank-${i+1}`}>{i+1}</div>
+                  <div className="list-info">
+                    <h3>{u.username ?? 'Anonyme'}</h3>
+                  </div>
+                  <div className="list-score">
+                    <div className="score-number">{u.avg} <span className="score-max">/10</span></div>
+                    <div className="score-subtitle">{u.count} avis</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
       </div>
     </div>
