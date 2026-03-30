@@ -3,6 +3,7 @@ import { getRecentReviews } from '../services/reviews';
 import { getAllSubjects } from '../services/subjects';
 import './RecentReviews.css';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 type Review = {
   id: string
@@ -17,14 +18,20 @@ type Review = {
 export default function RecentReviews(){
     const [reviews, setReviews] = useState<Review[]>([])
     const [subjectsMap, setSubjectsMap] = useState<Record<string,string>>({})
+    const [currentUser, setCurrentUser] = useState<any>(null)
     const navigate = useNavigate()
 
     useEffect(()=>{
       let mounted = true
-      Promise.all([getRecentReviews(12), getAllSubjects()])
-        .then(([reviewsData, subjectsData])=>{
+      Promise.all([
+        getRecentReviews(12), 
+        getAllSubjects(),
+        supabase.auth.getUser()
+      ])
+        .then(([reviewsData, subjectsData, userData])=>{
           if(!mounted) return
           if(reviewsData) setReviews(reviewsData as Review[])
+          if(userData.data.user) setCurrentUser(userData.data.user)
           const map: Record<string,string> = {}
           if(subjectsData && Array.isArray(subjectsData)){
             subjectsData.forEach((s: any)=>{
@@ -51,7 +58,13 @@ export default function RecentReviews(){
             <h3 
               onClick={(e) => {
                 e.stopPropagation();
-                if (review.users?.username) navigate(`/profile-public/${review.users.username}`);
+                if (review.users?.username) {
+                  if (currentUser?.id === review.user_id) {
+                    navigate('/profile');
+                  } else {
+                    navigate(`/profile-public/${review.users.username}`);
+                  }
+                }
               }} 
               style={{ cursor: review.users?.username ? 'pointer' : 'default' }}
             >

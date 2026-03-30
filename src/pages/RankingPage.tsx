@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import './RankingPage.css';
 import { getAllSubjects } from '../services/subjects';
 import { getUserRatingStats } from '../services/reviews';
-import { Link } from 'react-router-dom'; // Utilise react-router-dom pour la navigation
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 export default function RankingPage() {
   const [activeTab, setActiveTab] = useState('subjects');
@@ -10,14 +11,16 @@ export default function RankingPage() {
   const [userStats, setUserStats] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let mounted = true;
     setLoading(true);
     setError(null);
 
-    Promise.all([getAllSubjects(), getUserRatingStats()])
-      .then(([subjectsData, usersStats]) => {
+    Promise.all([getAllSubjects(), getUserRatingStats(), supabase.auth.getUser()])
+      .then(([subjectsData, usersStats, userData]) => {
         if (!mounted) return;
         const subs = Array.isArray(subjectsData) ? subjectsData.slice() : [];
         subs.sort((a: any, b: any) => (b.average_user_rating ?? 0) - (a.average_user_rating ?? 0));
@@ -25,6 +28,8 @@ export default function RankingPage() {
 
         const users = Array.isArray(usersStats) ? usersStats : [];
         setUserStats(users);
+        
+        if (userData.data.user) setCurrentUser(userData.data.user);
       })
       .catch((err) => {
         console.error('Failed to load rankings', err);
@@ -84,44 +89,54 @@ export default function RankingPage() {
             <div style={{ flex: 1 }}>
               <h3>Suceurs (moyenne élevée)</h3>
               {userStats.slice().sort((a, b) => b.avg - a.avg).map((u: any, i: number) => (
-                <Link 
+                <div 
                   key={`su-${u.user_id}-${i}`} 
-                  to={`/profile-public/${u.username}`} 
-                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  className="leaderboard-row clickable-row"
+                  onClick={() => {
+                    if (currentUser?.id === u.user_id) {
+                      navigate('/profile');
+                    } else {
+                      navigate(`/profile-public/${u.username}`);
+                    }
+                  }}
+                  style={{ cursor: 'pointer' }}
                 >
-                  <div className="leaderboard-row clickable-row">
-                    <div className={`rank-badge rank-${i + 1}`}>{i + 1}</div>
-                    <div className="list-info">
-                      <h3>{u.username ?? 'Anonyme'}</h3>
-                    </div>
-                    <div className="list-score">
-                      <div className="score-number">{u.avg} <span className="score-max">/10</span></div>
-                      <div className="score-subtitle">{u.count} avis</div>
-                    </div>
+                  <div className={`rank-badge rank-${i + 1}`}>{i + 1}</div>
+                  <div className="list-info">
+                    <h3>{u.username ?? 'Anonyme'}</h3>
                   </div>
-                </Link>
+                  <div className="list-score">
+                    <div className="score-number">{u.avg} <span className="score-max">/10</span></div>
+                    <div className="score-subtitle">{u.count} avis</div>
+                  </div>
+                </div>
               ))}
             </div>
 
             <div style={{ flex: 1 }}>
               <h3>Haters (moyenne basse)</h3>
               {userStats.slice().sort((a, b) => a.avg - b.avg).map((u: any, i: number) => (
-                <Link 
+                <div 
                   key={`ha-${u.user_id}-${i}`} 
-                  to={`/profile-public/${u.username}`}
-                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  className="leaderboard-row clickable-row"
+                  onClick={() => {
+                    if (currentUser?.id === u.user_id) {
+                      navigate('/profile');
+                    } else {
+                      navigate(`/profile-public/${u.username}`);
+                    }
+                  }}
+                  style={{ cursor: 'pointer' }}
                 >
-                  <div className="leaderboard-row clickable-row">
-                    <div className={`rank-badge rank-${i + 1}`}>{i + 1}</div>
-                    <div className="list-info">
-                      <h3>{u.username ?? 'Anonyme'}</h3>
-                    </div>
-                    <div className="list-score">
-                      <div className="score-number">{u.avg} <span className="score-max">/10</span></div>
-                      <div className="score-subtitle">{u.count} avis</div>
-                    </div>
+                  <div className={`rank-badge rank-${i + 1}`}>{i + 1}</div>
+                  <div className="list-info">
+                    <h3>{u.username ?? 'Anonyme'}</h3>
                   </div>
-                </Link>
+                  <div className="list-score">
+                    <div className="score-number">{u.avg} <span className="score-max">/10</span></div>
+                    <div className="score-subtitle">{u.count} avis</div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

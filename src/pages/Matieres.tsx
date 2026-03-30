@@ -132,7 +132,15 @@ const ReviewsList = ({ reviews, currentUser, onDelete, navigate }: any) => (
       <div 
         key={r.id} 
         className="review-card"
-        onClick={() => r.users?.username && navigate(`/profile-public/${r.users.username}`)}
+        onClick={() => {
+          if (r.users?.username) {
+            if (currentUser?.id === r.user_id) {
+              navigate('/profile');
+            } else {
+              navigate(`/profile-public/${r.users.username}`);
+            }
+          }
+        }}
         style={{ cursor: r.users?.username ? 'pointer' : 'default' }}
       >
         <div className="review-header">
