@@ -47,12 +47,22 @@ export default function RecentReviews(){
       <div className="scroll-container">
         
         {reviews.map((review) => (
-          <div key={review.id} className="review-card" onClick={()=>navigate(`/course/${review.subject_id}`)} style={{ cursor:'pointer'}}>
-            <h3 >{review.users?.username ?? 'Anonyme'}</h3>
+          <div key={review.id} className="review-card">
+            <h3 
+              onClick={(e) => {
+                e.stopPropagation();
+                if (review.users?.username) navigate(`/profile-public/${review.users.username}`);
+              }} 
+              style={{ cursor: review.users?.username ? 'pointer' : 'default' }}
+            >
+              {review.users?.username ?? 'Anonyme'}
+            </h3>
             <p>{review.comment ?? 'Pas de commentaire'}</p>
             <p>Note: {review.user_rating ?? 'N/A'}</p>
             <p>Note DS: {review.ds_grade ?? 'N/A'}</p>
-            <p>Matière: {subjectsMap[review.subject_id ?? ''] ?? 'Inconnue'}</p>
+            <p onClick={() => navigate(`/subjects/${review.subject_id}`)} style={{ cursor: 'pointer' }}>
+              Matière: {subjectsMap[review.subject_id ?? ''] ?? 'Inconnue'}
+            </p>
           </div>
         ))}
 
