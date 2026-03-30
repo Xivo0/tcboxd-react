@@ -7,7 +7,19 @@ Ne pas déranger
   margin: 0 auto;
   padding: 40px 20px;
   font-family: sans-serif;
-  color: #333;
+  color: #fff !important;
+}
+.ranking-page-container h1{
+  color: #fff !important;
+}
+
+.ranking-page-container h2,
+.ranking-page-container h3,
+.ranking-page-container p,
+.ranking-page-container .main-tab-button,
+.ranking-page-container .score-number,
+.ranking-page-container .score-subtitle {
+  color: #3B0764 !important;
 }
 
 /* --- EN-TÊTE --- */

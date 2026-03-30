@@ -90,8 +90,8 @@ export default function Matieres() {
 
       <section className="matiere-header">
         <h1>{subject.name}</h1>
-        <p><strong>Note moyenne :</strong> {averageUserRating}/10</p>
-        <p><strong>Note moyenne DS :</strong> {averageDsGrade}/20</p>
+        <p className="average-rating"><strong>Note moyenne :</strong> {averageUserRating}/10</p>
+        <p className="average-ds-rating"><strong>Note moyenne DS :</strong> {averageDsGrade}/20</p>
       </section>
 
       <section className="matiere-form">
@@ -136,7 +136,7 @@ const ReviewsList = ({ reviews, currentUser, onDelete, navigate }: any) => (
         style={{ cursor: r.users?.username ? 'pointer' : 'default' }}
       >
         <div className="review-header">
-          <strong>{r.users?.username ?? 'Anonyme'}</strong>
+          <strong className="review-author">{r.users?.username ?? 'Anonyme'}</strong>
           {currentUser && currentUser.id === r.user_id && (
             <button 
               onClick={(e) => { e.stopPropagation(); onDelete(r.id); }} 

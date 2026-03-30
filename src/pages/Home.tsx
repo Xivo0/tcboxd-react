@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getAllSubjects } from '../services/subjects'
 import { getTopRaters, getTopHaters } from '../services/reviews'
+import './Home.css'
 
 function Home() {
   const [subjects, setSubjects] = useState<any[]>([])
@@ -29,7 +30,7 @@ function Home() {
 
       {/* Matières à noter */}
       <section>
-        <h2>Matières à noter</h2>
+        <h2 className="section-title-white">Matières à noter</h2>
         <div className="subjects-scroll">
           {subjects.map(subject => (
             <a key={subject.id} href={`/subjects/${subject.id}`}>
@@ -43,7 +44,7 @@ function Home() {
 
       {/* Aperçu classements */}
       <section>
-        <h2>Aperçu classements</h2>
+        <h2 className="section-title-white">Aperçu classements</h2>
         <div className="rankings-preview">
 
           <div>

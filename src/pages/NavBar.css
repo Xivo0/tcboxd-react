@@ -1,39 +1,83 @@
 body {
-    background-color: #28104a;
+  background-color: #28104a;
 }
 
 /* Navbar background color */
-.navbar {
+.navbar.custom-navbar {
   background-color: #23034E !important;
+  min-height: 80px; /* Navbar réduite */
 }
 
 /* Logo styling */
 .navbar .logo {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  width: 80px;
+  height: 80px;
+  margin-right: 16px;
 }
 
 /* Navbar brand text color */
 .navbar-brand {
   color: #fff !important;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 /* Navigation links color */
 .navbar-nav .nav-link {
   color: #fff !important;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  padding: 30px 12px !important;
+  border-radius: 4px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #ddd !important;
+  color: #23034E !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  transform: scale(1.02);
 }
 
 /* Active nav link */
 .navbar-nav .nav-link.active {
   color: #fff !important;
   font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Dropdown menu styling - ouverture au survol */
+.navbar .dropdown:hover .dropdown-menu {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar .dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  margin-top: 12px;
+}
+
+.navbar .dropdown-item {
+  color: #333 !important;
+  padding: 12px 20px;
+  transition: all 0.2s ease;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #f8f9fa !important;
+  color: #23034E !important;
+  transform: translateX(5px);
 }
 
 /* Search button styling */
@@ -41,12 +85,20 @@ body {
   color: #fff !important;
   border-color: #cc53b6 !important;
   background-color: #f28be2 !important;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 8px 16px !important;
+  height: auto;
+  display: flex;
+  align-items: center;
 }
 
 .navbar .btn-outline-success:hover {
   color: #fff !important;
   background-color: #b82bce !important;
   border-color: #9219a0 !important;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Search input styling */
@@ -54,4 +106,7 @@ body {
   background-color: #fff !important;
   border: 1px solid #ddd !important;
   color: #000 !important;
+  height: auto;
+  padding: 8px 12px !important;
+  border-radius: 20px;
 }

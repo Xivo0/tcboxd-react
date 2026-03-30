@@ -21,9 +21,15 @@
   /* Optionnel : Rendre le défilement plus fluide sur mobile */
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch; 
+  -ms-overflow-style: none;  /* IE et Edge */
+  scrollbar-width: none;      /* Firefox */
 }
 
-/* Masquer la barre de défilement pour un look plus "propre" (Optionnel) */
+.scroll-container::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari et Opera */
+}
+
+/* Masquer la barre de défilement pour un look plus "propre" (Optionnel) ) */
 
 
 /* LES CARTES */
@@ -38,10 +44,11 @@
   box-sizing: border-box; /* inclure le padding dans la taille */
   
   /* Style visuel basé sur ton croquis (bords arrondis, contour) */
-  border: 2px solid #000;
+  border: 4px solid #23034E;
   border-radius: 16px;
   padding: 20px;
   background-color: #fff;
+  color: #030303;
   
   /* Petit effet au survol pour l'interactivité */
   transition: transform 0.2s ease;
@@ -63,15 +70,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #000 !important;
 }
 
 .review-card p {
   margin: 4px 0;
   font-size: 0.9rem;
   line-height: 1.2;
-  /* Permettre le retour à la ligne et casser les mots trop longs */
   word-break: break-word;
   overflow-wrap: anywhere;
+  color: #222 !important;
 }
 
 /* Limiter la taille du commentaire pour éviter d'étirer la carte */

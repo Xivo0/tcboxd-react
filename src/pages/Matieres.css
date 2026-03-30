@@ -14,8 +14,34 @@
 }
 
 .matiere-header h1 {
-  color: #180c39;
+  color: #fff;
   margin-bottom: 0.5rem;
+}
+
+/* Notes moyennes dans la même couleur que le titre */
+.matiere-header p {
+  color: #180c39;
+  font-weight: bold;
+  margin: 0.25rem 0;
+}
+
+/* Classes spécifiques pour les notes moyennes */
+.average-rating,
+.average-ds-rating {
+  color: #7c3aed !important; /* Violet plus clair et visible */
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.average-rating strong,
+.average-ds-rating strong {
+  color: #7c3aed !important; /* S'assurer que les éléments strong sont aussi en violet */
+}
+
+/* Pseudos des commentateurs en violet */
+.review-author {
+  color: #7c3aed !important;
+  font-weight: bold;
 }
 
 /* Formulaire */

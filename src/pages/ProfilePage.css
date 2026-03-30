@@ -34,25 +34,29 @@
   font-size: 1.8rem;
 }
 
+/* Informations du profil en violet */
+.profile-name {
+  color: #7c3aed !important;
+  font-weight: bold;
+}
+
 .profile-email {
-  margin: 0 0 12px 0;
-  color: #6b7280;
+  color: #7c3aed !important;
+  font-weight: 500;
 }
 
 .profile-badge {
-  display: inline-block;
-  background-color: #f3e8ff; /* Violet très clair */
-  color: #7e22ce; /* Violet foncé */
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: bold;
+  background-color: #f3e8ff !important;
+  color: #7c3aed !important;
+  border: 1px solid #7c3aed !important;
 }
 
 /* --- SECTION DES AVIS --- */
 .section-title {
   margin-bottom: 24px;
   font-size: 1.4rem;
+  color: #7c3aed !important;
+  font-weight: bold;
 }
 
 /* LA GRILLE RESPONSIVE MAGIQUE */
@@ -98,6 +102,29 @@
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Informations des matières en violet */
+.subject-name {
+  color: #7c3aed !important;
+  font-weight: bold;
+}
+
+.subject-badge {
+  background-color: #f3e8ff !important;
+  color: #7c3aed !important;
+  border: 1px solid #7c3aed !important;
+}
+
+/* Labels et informations en violet */
+.rating-label {
+  color: #7c3aed !important;
+  font-weight: 500;
+}
+
+.rating-number {
+  color: #7c3aed !important;
   font-weight: bold;
 }
 

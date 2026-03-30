@@ -1,13 +1,82 @@
 body {
-  background-color: #1a0633 !important;
+  background-color: #240046 !important;
   margin: 0;
   padding: 0;
+  color: #fff !important;
+}
+
+/* Forcer les couleurs de texte à blanc sur toutes les pages */
+body, body * {
+  color: #fff !important;
 }
 
 #root {
-  background-color: #372453;
+  background-color: #3c096c;
   min-height: 100vh;
 }
+
+/* Texte violet foncé sur la partie avis */
+.review-card,
+.review-card h3,
+.review-card p,
+.review-card .comment,
+.review-card .review-header,
+.review-card .review-rating,
+.review-card .review-author {
+  color: #3B0764 !important;
+}
+
+/* Pages d'avis détaillés - texte noir sur fond blanc */
+.course-detail-page,
+.course-detail-page *,
+.review-detail,
+.review-detail *,
+.review-content,
+.review-content *,
+.review-text,
+.review-text * {
+  color: #000 !important;
+  background-color: transparent !important;
+}
+
+/* Conteneurs d'avis détaillés */
+.review-detail-container,
+.course-review-detail {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+/* Texte violet foncé sur tous les panneaux / zones blanches */
+.review-card,
+.subject-card,
+.users-column,
+.leaderboard-row,
+.course-card,
+.matiere-header,
+.matiere-form,
+.profile-page,
+.profile-card,
+.card,
+.navbar .dropdown-menu,
+#root [class*="-card"] {
+  color: #3B0764 !important;
+}
+
+/* Redéfinir les titres explicites si besoin */
+.ranking-page-container h1,
+.ranking-page-container h2,
+.ranking-page-container h3,
+.matiere-header h1,
+.matiere-header h2,
+.matiere-header h3,
+.review-card h3,
+.subject-card h2,
+.subject-card h3,
+.profile-card h2,
+.profile-card h3 {
+  color: #3B0764 !important;
+}
+
 
 .app-container {
   max-width: 800px;
