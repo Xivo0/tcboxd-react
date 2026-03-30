@@ -1,0 +1,64 @@
+.profile-public-container {
+  padding: 20px;
+}
+
+.profile-body {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-body h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.review-card h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.card-rating {
+  margin: 8px 0;
+  font-weight: bold;
+  color: #ff6b6b;
+}
+
+.card-comment {
+  margin: 8px 0;
+  color: #555;
+  font-style: italic;
+}
+
+.card-divider {
+  margin: 12px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.card-date {
+  margin: 8px 0;
+  color: #999;
+  font-size: 12px;
+}
+
+.no-reviews {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-size: 16px;
+}

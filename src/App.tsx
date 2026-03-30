@@ -12,13 +12,13 @@ import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 import SubjectRankingPage from './pages/RankingPage';
 import ListesProfs from './pages/ListesProfs';
+import PublicProfilePage from './pages/PublicProfile';
 
 //  FONCTIONS D'AUTH 
 const loginWithGithub = async () => {
   await supabase.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: 'http://localhost:5173/', //dynamiquement à ajouter
       redirectTo: window.location.origin + '/',
     },
   });
@@ -91,6 +91,12 @@ function App() {
             <ListesProfs />
           </div>
         } />
+        {/* Profil public d'un utilisateur */}
+        <Route path="/profile-public/:username" element={
+          <div className="app-container">
+            <PublicProfilePage />
+          </div>
+          } />
 
         {/* Statistiques d'un professeur */}
         <Route path="/profs/:id" element = {
