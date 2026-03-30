@@ -57,6 +57,8 @@ export default function RecentReviews(){
             >
               {review.users?.username ?? 'Anonyme'}
             </h3>
+          <div key={review.id} className="review-card" onClick={()=>navigate(`/subjects/${review.subject_id}`)} style={{ cursor:'pointer'}}>
+            <h3 >{review.users?.username ?? 'Anonyme'}</h3>
             <p>{review.comment ?? 'Pas de commentaire'}</p>
             <p>Note: {review.user_rating ?? 'N/A'}</p>
             <p>Note DS: {review.ds_grade ?? 'N/A'}</p>

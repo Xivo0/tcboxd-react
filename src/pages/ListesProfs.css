@@ -19,14 +19,30 @@
 }
 
 .prof-card {
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   border-radius: 8px;
+  background-color: #ffffff;
   padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prof-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.08);
 }
 
 .rate-button {
   display: flex;
   gap: 20px;
   margin-top: 1rem;
-  padding: 16px;;
+  padding: 16px;
+  background-color: #3B0764;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.rate-button:hover {
+  background-color: #580b94;
 }
