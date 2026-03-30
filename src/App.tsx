@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 
 // Import 
@@ -33,10 +33,22 @@ const logout = async () => {
 };
 
 function App() {
+  const location = useLocation()
   return (
     <>
       <NavBar />
 
+      {}
+      {location.pathname === '/profile' && (
+        <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
+          <button onClick={loginWithGithub}>
+            Se connecter avec Github
+          </button>
+          <button onClick={logout} style={{ backgroundColor: '#ff4d4d', color: 'white', marginLeft: '10px' }}>
+            Déconnexion
+          </button>
+        </div>
+      )}
       <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
         <button onClick={loginWithGithub}>
           Se connecter avec Github
