@@ -1,11 +1,13 @@
 import './RankingPreview.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getTopRaters, getTopHaters } from '../services/reviews';
 
 export default function RankingPreview() {
   const [topRaters, setTopRaters] = useState<any[]>([]);
   const [topHaters, setTopHaters] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     Promise.all([
@@ -50,15 +52,33 @@ export default function RankingPreview() {
             <h3 className='podium-title'>{ranking.title}</h3>
             <div className='podium'>
               <div className='step step-second'>
-                <span className='step-name'>{ranking.second}</span>
+                <span 
+                  className='step-name' 
+                  onClick={() => ranking.second !== '???' && navigate(`/profile-public/${ranking.second}`)}
+                  style={{ cursor: ranking.second !== '???' ? 'pointer' : 'default' }}
+                >
+                  {ranking.second}
+                </span>
                 <span className='step-number'>2</span>
               </div>
               <div className='step step-first'>
-                <span className='step-name'>{ranking.first}</span>
+                <span 
+                  className='step-name' 
+                  onClick={() => ranking.first !== '???' && navigate(`/profile-public/${ranking.first}`)}
+                  style={{ cursor: ranking.first !== '???' ? 'pointer' : 'default' }}
+                >
+                  {ranking.first}
+                </span>
                 <span className='step-number'>1</span>
               </div>
               <div className='step step-third'>
-                <span className='step-name'>{ranking.third}</span>
+                <span 
+                  className='step-name' 
+                  onClick={() => ranking.third !== '???' && navigate(`/profile-public/${ranking.third}`)}
+                  style={{ cursor: ranking.third !== '???' ? 'pointer' : 'default' }}
+                >
+                  {ranking.third}
+                </span>
                 <span className='step-number'>3</span>
               </div>
             </div>

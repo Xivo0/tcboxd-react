@@ -10,6 +10,7 @@
   font-family: sans-serif; /* À adapter avec ta police */
 }
 
+
 /* LE CONTENEUR QUI DÉFILE */
 .scroll-container {
   display: flex; /* Aligne les cartes horizontalement */

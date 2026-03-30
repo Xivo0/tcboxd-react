@@ -46,10 +46,11 @@
 
 /* Formulaire */
 .matiere-form {
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 2rem;
+  background-color: #fff;
 }
 
 .form-group {
@@ -67,6 +68,7 @@
   font-size: 1rem;
 }
 
+
 /* Avis */
 .matiere-reviews {
   display: flex;
@@ -74,20 +76,23 @@
   gap: 1rem;
 }
 
-.review-card {
+.matiere-reviews .review-card {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
   background-color: #fff;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.review-header {
+.matiere-reviews .review-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
 
-.review-rating {
+.matiere-reviews .review-rating {
   color: #aa3bff;
   font-weight: bold;
 }

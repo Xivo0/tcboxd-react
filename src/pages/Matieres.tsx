@@ -111,7 +111,7 @@ export default function Matieres() {
               <label>Commentaire :</label>
               <textarea value={comment} onChange={e => setComment(e.target.value)} required rows={4} />
             </div>
-            <button type="submit" disabled={submitting}>{submitting ? 'Envoi...' : 'Poster mon avis'}</button>
+            <button type="submit" className="primary-button" disabled={submitting}>{submitting ? 'Envoi...' : 'Poster mon avis'}</button>
           </form>
         ) : (
           <p>Connecte-toi pour poster.</p>
@@ -119,21 +119,29 @@ export default function Matieres() {
       </section>
 
       {/* 2. ON APPELLE LE COMPOSANT REVIEWSLIST ICI */}
-      <ReviewsList reviews={reviews} currentUser={user} onDelete={handleActionDelete} />
+      <ReviewsList reviews={reviews} currentUser={user} onDelete={handleActionDelete} navigate={navigate} />
     </div>
   );
 }
 
 // Composant interne pour la liste
-const ReviewsList = ({ reviews, currentUser, onDelete }: any) => (
+const ReviewsList = ({ reviews, currentUser, onDelete, navigate }: any) => (
   <section className="matiere-reviews">
     <h2>Avis ({reviews.length})</h2>
     {reviews.map((r: any) => (
-      <div key={r.id} className="review-card">
+      <div 
+        key={r.id} 
+        className="review-card"
+        onClick={() => r.users?.username && navigate(`/profile-public/${r.users.username}`)}
+        style={{ cursor: r.users?.username ? 'pointer' : 'default' }}
+      >
         <div className="review-header">
           <strong className="review-author">{r.users?.username ?? 'Anonyme'}</strong>
           {currentUser && currentUser.id === r.user_id && (
-            <button onClick={() => onDelete(r.id)} style={{ color: 'red', marginLeft: '10px' }}>
+            <button 
+              onClick={(e) => { e.stopPropagation(); onDelete(r.id); }} 
+              style={{ color: 'red', marginLeft: '10px' }}
+            >
               Supprimer
             </button>
           )}

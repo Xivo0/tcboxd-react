@@ -1,6 +1,5 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { supabase } from './lib/supabase';
 
 // Import 
 import Profil from './pages/ProfilePage'
@@ -12,29 +11,12 @@ import RankingPreview from './pages/RankingPreview';
 import Matieres from './pages/Matieres';
 import SubjectRankingPage from './pages/RankingPage';
 import ListesProfs from './pages/ListesProfs';
-
-//  FONCTIONS D'AUTH 
-const loginWithGithub = async () => {
-  await supabase.auth.signInWithOAuth({
-    provider: 'github',
-    options: {
-      redirectTo: 'http://localhost:5173/', //dynamiquement à ajouter
-      redirectTo: window.location.origin + '/',
-    },
-  });
-};
-
-const logout = async () => {
-  const { error } = await supabase.auth.signOut();
-  if (error) console.error("Erreur déconnexion:", error.message);
-  // On force le retour à l'accueil et on vide l'état
-  window.location.href = "/";
-};
+import PublicProfilePage from './pages/PublicProfile';
+import ProfessorPage from './pages/ProfessorPage';
 
 function App() {
   return (
     <>
-      { }
       <NavBar />
 
       {}
@@ -91,11 +73,17 @@ function App() {
             <ListesProfs />
           </div>
         } />
-
-        {/* Statistiques d'un professeur */}
-        <Route path="/profs/:id" element = {
+        {/* Profil public d'un utilisateur */}
+        <Route path="/profile-public/:username" element={
           <div className="app-container">
-            <h2>Statistiques du professeur</h2>
+            <PublicProfilePage />
+          </div>
+          } />
+
+        {/* Page détaillée d'un professeur */}
+        <Route path="/professeurs/:id" element={
+          <div className="app-container">
+            <ProfessorPage />
           </div>
         } />
 

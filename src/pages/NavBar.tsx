@@ -3,14 +3,40 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import icone from '../assets/icon.png';
 import '../App.css';
 import './NavBar.css';
 import type React from 'react';
+import { supabase } from '../lib/supabase';
+import { useEffect, useState } from 'react';
 
 export default function NavBar() {
+  const navigate = useNavigate()
+  const [user, setUser] = useState<any>(null)
+
+  useEffect(()=>{
+    let mounted = true
+    supabase.auth.getUser().then(res => { if(mounted) setUser(res.data.user) })
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      if(!mounted) return
+      setUser(session?.user ?? null)
+    })
+    return ()=>{ mounted = false; sub?.subscription.unsubscribe() }
+  },[])
+
+  const loginWithGithub = async () => {
+    await supabase.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: window.location.origin + '/' } })
+  }
+
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) console.error("Erreur déconnexion:", error.message);
+    // redirect home
+    navigate('/')
+  }
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Recherche lancée !");
@@ -57,19 +83,23 @@ export default function NavBar() {
               </Button>
             </Form>
 
-            {/* Bouton profil — EN DEHORS du Form */}
-            <Link to="/profile" className="profile-btn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                <path d="M2 14s-1 0-1-1 1-4 7-4 7 3 7 4-1 1-1 1H2z"/>
-              </svg>
-            </Link>
+            {/* Bouton profil — dropdown */}
+            <NavDropdown
+              title={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M2 14s-1 0-1-1 1-4 7-4 7 3 7 4-1 1-1 1H2z"/></svg>}
+              id="profile-dropdown"
+              align="end"
+            >
+              {user ? (
+                <>
+                  <NavDropdown.Header>{user.user_metadata?.full_name || user.email}</NavDropdown.Header>
+                  <NavDropdown.Item as={Link} to="/profile">Voir profil</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={logout}>Déconnexion</NavDropdown.Item>
+                </>
+              ) : (
+                <NavDropdown.Item onClick={loginWithGithub}>Connexion</NavDropdown.Item>
+              )}
+            </NavDropdown>
 
           </div>
 
