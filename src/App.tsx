@@ -19,16 +19,6 @@ function App() {
     <>
       <NavBar />
 
-      {}
-      <div className="auth-bar" style={{ padding: '10px', textAlign: 'right' }}>
-        <button onClick={loginWithGithub} style={{ borderRadius:'10px' }}>
-          Se connecter avec Github
-        </button>
-        <button onClick={logout} style={{ borderRadius:'10px',backgroundColor: '#ff4d4d', color: 'white', marginLeft: '10px' }}>
-          Déconnexion
-        </button>
-      </div>
-
       <Routes>
         {}
         <Route path="/" element={
