@@ -73,7 +73,7 @@ export default function ProfessorPage() {
       </button>
 
       <section className="prof-header">
-        <h1>{professor.name}</h1>
+        <h1 color="#000000">{professor.name}</h1>
         {professor.title && <p className="prof-title">{professor.title}</p>}
         <div className="prof-meta">
           <span className="prof-likes"> {likeCount} like{likeCount > 1 ? 's' : ''}</span>
@@ -84,7 +84,7 @@ export default function ProfessorPage() {
       </section>
 
       <section className="prof-details">
-        <h2 >Matières enseignées</h2>
+        <h2 color="#000000">Matières enseignées</h2>
         {professor.subject_professors?.length > 0 ? (
           <ul text-color="#000000">
             {professor.subject_professors.map((sp: any) => (
@@ -97,7 +97,7 @@ export default function ProfessorPage() {
       </section>
 
       <section className="prof-description">
-        <h2>À propos</h2>
+        <h2 color="#000000">À propos</h2>
         <p>{professor.description ?? 'Pas de description disponible.'}</p>
       </section>
     </div>

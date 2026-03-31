@@ -20,16 +20,27 @@
   
   /* Optionnel : Rendre le défilement plus fluide sur mobile */
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; 
-  -ms-overflow-style: none;  /* IE et Edge */
-  scrollbar-width: none;      /* Firefox */
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: auto;  /* IE et Edge */
+  scrollbar-width: auto;     /* Firefox */
 }
 
 .scroll-container::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari et Opera */
+  height: 10px; /* visible et placée en bas */
 }
 
-/* Masquer la barre de défilement pour un look plus "propre" (Optionnel) ) */
+.scroll-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #180c39;
+  border-radius: 8px;
+  border: 2px solid #f0f0f0;
+}
+
+/* Affiche la barre de défilement en bas pour une UX plus claire */
 
 
 /* LES CARTES */

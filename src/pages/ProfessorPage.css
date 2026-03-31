@@ -71,8 +71,16 @@ h1 {
 }
 
 .prof-details h2,
+.prof-description h2,
+.prof-page h1,
+.prof-page .prof-title,
+.prof-page .prof-likes {
+  color: #000 !important;
+}
+
+.prof-details h2,
 .prof-description h2 {
-  color: #000000;
+  color: #000 !important;
 }
 
 .prof-details ul {
