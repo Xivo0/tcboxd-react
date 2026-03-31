@@ -15,6 +15,23 @@ import { useEffect, useState } from 'react';
 export default function NavBar() {
   const navigate = useNavigate()
   const [user, setUser] = useState<any>(null)
+  const [showNavbar, setShowNavbar] = useState(true)
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY < 50 || currentScrollY < lastScrollY) {
+        setShowNavbar(true)
+      } else {
+        setShowNavbar(false)
+      }
+      lastScrollY = currentScrollY
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(()=>{
     let mounted = true
@@ -43,7 +60,7 @@ export default function NavBar() {
   }
 
   return (
-    <Navbar expand="lg" className="custom-navbar">
+    <Navbar expand="lg" className={`custom-navbar ${showNavbar ? 'navbar-visible' : 'navbar-hidden'}`}>
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           <img src={icone} alt='icone' className='logo' />
@@ -85,7 +102,7 @@ export default function NavBar() {
 
             {/* Bouton profil — dropdown */}
             <NavDropdown
-              title={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M2 14s-1 0-1-1 1-4 7-4 7 3 7 4-1 1-1 1H2z"/></svg>}
+              title={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" color='white'><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M2 14s-1 0-1-1 1-4 7-4 7 3 7 4-1 1-1 1H2z"/></svg>}
               id="profile-dropdown"
               align="end"
             >

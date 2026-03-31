@@ -23,6 +23,12 @@
   background-color: #ffffff;
   padding: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #000 !important;
+}
+
+.matiere-card h3,
+.matiere-card span {
+  color: #000 !important;
 }
 
 .matiere-card:hover {

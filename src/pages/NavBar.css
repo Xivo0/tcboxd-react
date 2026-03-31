@@ -6,6 +6,20 @@ body {
 .navbar.custom-navbar {
   background-color: #23034E !important;
   min-height: 80px; /* Navbar réduite */
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.navbar-hidden {
+  transform: translateY(-110%);
+  opacity: 0;
+}
+
+.navbar-visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* Logo styling */
@@ -32,6 +46,20 @@ body {
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+/* Profil dropdown caret color */
+.navbar .dropdown-toggle::after {
+  border-top-color: #fff !important;
+}
+
+/* Mobile toggler icon color */
+.navbar .navbar-toggler {
+  border-color: rgba(255,255,255,0.7);
+}
+
+.navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 .navbar-nav .nav-link:hover {
@@ -71,13 +99,12 @@ body {
 .navbar .dropdown-item {
   color: #333 !important;
   padding: 12px 20px;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .navbar .dropdown-item:hover {
   background-color: #f8f9fa !important;
   color: #23034E !important;
-  transform: translateX(5px);
 }
 
 /* Search button styling */

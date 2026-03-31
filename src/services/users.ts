@@ -51,7 +51,7 @@ export async function addFavoriteProfessor(userId: string, professorId: string) 
   if (error) throw error
 
   // Incrémenter le compteur de favoris
-  const { data: currentData, error: fetchError } = await supabase
+  /*const { data: currentData, error: fetchError } = await supabase
     .from('professors')
     .select('favorites_count')
     .eq('id', professorId)
@@ -63,7 +63,7 @@ export async function addFavoriteProfessor(userId: string, professorId: string) 
     .from('professors')
     .update({ favorites_count: newCount })
     .eq('id', professorId)
-  if (updateError) throw updateError
+  if (updateError) throw updateError*/
 }
 
 export async function removeFavoriteProfessor(userId: string, professorId: string) {
@@ -75,7 +75,7 @@ export async function removeFavoriteProfessor(userId: string, professorId: strin
   if (error) throw error
 
   // Décrémenter le compteur de favoris
-  const { data: currentData, error: fetchError } = await supabase
+  /*const { data: currentData, error: fetchError } = await supabase
     .from('professors')
     .select('favorites_count')
     .eq('id', professorId)
@@ -87,5 +87,5 @@ export async function removeFavoriteProfessor(userId: string, professorId: strin
     .from('professors')
     .update({ favorites_count: newCount })
     .eq('id', professorId)
-  if (updateError) throw updateError
+  if (updateError) throw updateError*/
 }
