@@ -38,6 +38,7 @@
   /* flex-grow: 0, flex-shrink: 0, flex-basis: auto */
   flex: 0 0 auto; 
   
+  margin-top: 5px;
   width: 280px; /* Largeur fixe de la carte */
   min-height: 160px; /* hauteur minimale, le contenu peut augmenter */
   max-height: 260px; /* empêche une carte de devenir trop grande */

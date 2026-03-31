@@ -7,14 +7,13 @@ Ne pas déranger
   margin: 0 auto;
   padding: 40px 20px;
   font-family: sans-serif;
-  color: #fff !important;
+  color: #fff ;
 }
 .ranking-page-container h1{
   color: #fff !important;
 }
 
 .ranking-page-container h2,
-.ranking-page-container h3,
 .ranking-page-container p,
 .ranking-page-container .main-tab-button,
 .ranking-page-container .score-number,
@@ -84,6 +83,12 @@ Ne pas déranger
   justify-content: center; /* centre les colonnes */
   align-items: flex-start;
   margin-top: 12px;
+}
+
+.classementType{
+  color: #fff !important;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .users-column {

@@ -91,7 +91,9 @@ export default function NavBar() {
             >
               {user ? (
                 <>
-                  <NavDropdown.Header>{user.user_metadata?.full_name || user.email}</NavDropdown.Header>
+                  <NavDropdown.Header style={{ color: '#ff00ea !important' }}>
+                    {user.user_metadata?.full_name || user.email}
+                  </NavDropdown.Header>                  
                   <NavDropdown.Item as={Link} to="/profile">Voir profil</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logout}>Déconnexion</NavDropdown.Item>

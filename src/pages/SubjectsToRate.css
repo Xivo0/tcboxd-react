@@ -41,7 +41,25 @@
 
 .subject-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Petite ombre sympa au survol */
+  box-shadow: 0 8px 15px #000000cc; /* Petite ombre sympa au survol */
+  background-color: #85409D;
+  transition: 200ms ease-out;
+  border : 2px solid #fff;
+}
+.subject-card:hover * {
+  color: #fff !important;
+  transition: 200ms ease-out;
+}
+
+.subject-card:hover .rate-button {
+  background-color: #fff;
+  color: #3B0764;
+  transition: 200ms ease-out;
+}
+
+.subject-card:hover .rate-button  {
+  color: #85409D !important;
+  transition: 200ms ease-out;
 }
 
 .subject-code {

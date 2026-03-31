@@ -47,7 +47,7 @@ export default function PublicProfilePage() {
     <div className="profile-public-container">
       {/* EN-TÊTE : On affiche qui on regarde */}
       <div className="public-header">
-        <img src={profileData.avatar_url} alt="Avatar" className="public-avatar" />
+        <img style={{ width: '200px', height: '200px', borderRadius: '20%' , marginBottom: '10px'}} src={profileData.avatar_url} alt="Avatar" className="public-avatar" />
         <h2>Profil de {username}</h2>
         <p>{profileData.full_name}</p>
       </div>
@@ -59,7 +59,7 @@ export default function PublicProfilePage() {
             profileData.reviews.map((review: any) => (
               <div key={review.id} className="review-card">
                 <h4>{review.subjects?.name || "Matière inconnue"}</h4>
-                <p className="card-rating">Note : <strong>{review.user_rating} / 10</strong></p> 
+                <p className="card-rating">Note : {review.user_rating} / 10</p> 
                 <p className="card-comment">"{review.comment}"</p>
                 <hr className="card-divider" />
                 <p className="card-date">

@@ -82,7 +82,10 @@ export default function RankingPage() {
         {activeTab === 'users' && (
           <div className="users-leaderboards" style={{ display: 'flex', gap: '24px' }}>
             <div style={{ flex: 1 }}>
-              <h3>Suceurs (moyenne élevée)</h3>
+              <h3 className="classementType">
+                <span style={{ color: '#ffffff' }}>Suceurs (moyenne élevée)
+                </span>
+                </h3>
               {userStats.slice().sort((a, b) => b.avg - a.avg).map((u: any, i: number) => (
                 <Link 
                   key={`su-${u.user_id}-${i}`} 
@@ -104,7 +107,9 @@ export default function RankingPage() {
             </div>
 
             <div style={{ flex: 1 }}>
-              <h3>Haters (moyenne basse)</h3>
+              <h3 style={{ marginBottom: '20px', textAlign: 'center' }}>
+                <span style={{ color: '#ffffff' }}>Haters (moyenne basse)</span>
+              </h3>              
               {userStats.slice().sort((a, b) => a.avg - b.avg).map((u: any, i: number) => (
                 <Link 
                   key={`ha-${u.user_id}-${i}`} 
