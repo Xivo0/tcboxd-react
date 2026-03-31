@@ -1,13 +1,8 @@
 body {
-  background-color: #240046 !important;
+  background-color: #240046;
   margin: 0;
   padding: 0;
-  color: #fff !important;
-}
-
-/* Forcer les couleurs de texte à blanc sur toutes les pages */
-body, body * {
-  color: #fff !important;
+  color: #fff;
 }
 
 #root {

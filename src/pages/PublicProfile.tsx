@@ -53,7 +53,7 @@ export default function PublicProfilePage() {
       </div>
 
       <div className="profile-body">
-        <h3>Évaluations ({profileData.reviews.length})</h3>
+        <h3 >Évaluations ({profileData.reviews.length})</h3>
         <div className="reviews-list">
           {profileData.reviews.length > 0 ? (
             profileData.reviews.map((review: any) => (

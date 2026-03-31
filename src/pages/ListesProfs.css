@@ -24,6 +24,13 @@
   background-color: #ffffff;
   padding: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #000 !important;
+}
+
+.prof-card h3,
+.prof-card p,
+.prof-card .prof-subjects {
+  color: #000 !important;
 }
 
 .prof-card:hover {

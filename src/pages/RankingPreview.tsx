@@ -46,43 +46,29 @@ export default function RankingPreview() {
   return (
     <section className='ranking-section'>
       <h2 className='section-title'>Aperçu classement</h2>
-      <div className='podiums-container'>
+      <div className='rankings-container'>
         {rankings.map((ranking) => (
-          <div key={ranking.id} className='podium-wrapper'>
-            <h3 className='podium-title'>{ranking.title}</h3>
-            <div className='podium'>
-              <div className='step step-second'>
-                <span 
-                  className='step-name' 
-                  onClick={() => ranking.second !== '???' && navigate(`/profile-public/${ranking.second}`)}
-                  style={{ cursor: ranking.second !== '???' ? 'pointer' : 'default' }}
-                >
-                  {ranking.second}
-                </span>
-                <span className='step-number'>2</span>
-              </div>
-              <div className='step step-first'>
-                <span 
-                  className='step-name' 
-                  onClick={() => ranking.first !== '???' && navigate(`/profile-public/${ranking.first}`)}
-                  style={{ cursor: ranking.first !== '???' ? 'pointer' : 'default' }}
-                >
-                  {ranking.first}
-                </span>
-                <span className='step-number'>1</span>
-              </div>
-              <div className='step step-third'>
-                <span 
-                  className='step-name' 
-                  onClick={() => ranking.third !== '???' && navigate(`/profile-public/${ranking.third}`)}
-                  style={{ cursor: ranking.third !== '???' ? 'pointer' : 'default' }}
-                >
-                  {ranking.third}
-                </span>
-                <span className='step-number'>3</span>
-              </div>
-            </div>
-            <div className='podium-base'></div>
+          <div key={ranking.id} className='ranking-list'>
+            <h3 className='ranking-title' onClick={()=> navigate(`/classement`)}>
+              {ranking.title}
+            </h3>
+            <ol className='ranking-items'>
+              {['first', 'second', 'third'].map((position, index) => {
+                const name = ranking[position as 'first' | 'second' | 'third']
+                if (!name) return null
+                return (
+                  <li key={position} className='ranking-item'>
+                    <span className='ranking-position'>{index + 1}.</span>
+                    <span
+                      className={`ranking-name ${name !== '???' ? 'clickable' : ''}`}
+                      onClick={() => name !== '???' && navigate(`/profile-public/${name}`)}
+                    >
+                      {name}
+                    </span>
+                  </li>
+                )
+              })}
+            </ol>
           </div>
         ))}
       </div>
