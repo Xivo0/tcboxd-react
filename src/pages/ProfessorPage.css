@@ -92,7 +92,10 @@ h1 {
   margin-bottom: 1.5rem;
   border: none;
   background-color: transparent;
-  color: #180c39;
+  color: #000;
   font-size: 1rem;
   cursor: pointer;
+}
+.back-button:hover {
+  text-decoration: underline;
 }
