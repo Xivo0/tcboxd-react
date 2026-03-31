@@ -48,23 +48,10 @@ export async function addFavoriteProfessor(userId: string, professorId: string) 
   const { error } = await supabase
     .from('user_favorite_professors')
     .insert([{ user_id: userId, professor_id: professorId }])
-  if (error) throw error
-
-  // Incrémenter le compteur de favoris
-  const { data: currentData, error: fetchError } = await supabase
-    .from('professors')
-    .select('favorites_count')
-    .eq('id', professorId)
-    .single()
-  if (fetchError) throw fetchError
-
-  const newCount = (currentData?.favorites_count ?? 0) + 1
-  const { error: updateError } = await supabase
-    .from('professors')
-    .update({ favorites_count: newCount })
-    .eq('id', professorId)
-  if (updateError) throw updateError
+  if (error) throw error 
 }
+
+
 
 export async function removeFavoriteProfessor(userId: string, professorId: string) {
   const { error } = await supabase
@@ -74,18 +61,4 @@ export async function removeFavoriteProfessor(userId: string, professorId: strin
     .eq('professor_id', professorId)
   if (error) throw error
 
-  // Décrémenter le compteur de favoris
-  const { data: currentData, error: fetchError } = await supabase
-    .from('professors')
-    .select('favorites_count')
-    .eq('id', professorId)
-    .single()
-  if (fetchError) throw fetchError
-
-  const newCount = Math.max(0, (currentData?.favorites_count ?? 0) - 1)
-  const { error: updateError } = await supabase
-    .from('professors')
-    .update({ favorites_count: newCount })
-    .eq('id', professorId)
-  if (updateError) throw updateError
 }
