@@ -84,9 +84,9 @@ export default function ProfessorPage() {
       </section>
 
       <section className="prof-details">
-        <h2>Matières enseignées</h2>
+        <h2 >Matières enseignées</h2>
         {professor.subject_professors?.length > 0 ? (
-          <ul>
+          <ul text-color="#000000">
             {professor.subject_professors.map((sp: any) => (
               <li key={sp.subjects.id}>{sp.subjects.name}</li>
             ))}
