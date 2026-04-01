@@ -1,37 +1,106 @@
+/* --- Mise en page globale --- */
 .liste-matieres-section {
-  padding: 2rem;
-}
-
-.liste-matieres-section h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.filtres {
-  margin-bottom: 1rem;
+  padding: 3rem 1rem;
+  color: white;
 }
 
 .matieres-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* --- LA CLASSE MERE : MODIFIEZ ICI LA TAILLE --- */
 .matiere-card {
-  border: 1px solid #000000;
-  border-radius: 8px;
-  background-color: #ffffff;
-  padding: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  color: #000 !important;
+  /* TAILLE UNIQUE POUR TOUTES LES CARTES */
+  width: 260px; 
+  height: 340px;
+  
+  position: relative;
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  
+  /* CONFIGURATION DE L'IMAGE COMMUNE */
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-blend-mode: overlay;
+
+  color: #fff  !important;
 }
 
-.matiere-card h3,
-.matiere-card span {
-  color: #000 !important;
+/* Reset des marges pour le contenu */
+.matiere-card * {
+  margin: 0 !important;
+  z-index: 2;
+}
+
+.card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* --- SOUS-CLASSES : UNIQUEMENT L'IMAGE ET LA COULEUR --- */
+/* On utilise background-image pour ne pas écraser le size/position du parent */
+
+.card-reseau { background-image: url("src/assets/reseau_logo.jpg"); }
+.card-reseau::before { background: linear-gradient(135deg, #1e3c72, #2a5298); }
+
+.card-syscom { background-image: url("src/assets/syscom_logo.jpg"); }
+.card-syscom::before { background: linear-gradient(135deg, #6a11cb, #2575fc); }
+
+.card-humanite { background-image: url("src/assets/maths_logo.jpg"); }
+.card-humanite::before { background: linear-gradient(135deg, #11998e, #38ef7d); }
+
+.card-informatique { background-image: url("src/assets/info_logo.jpg"); }
+.card-informatique::before { background: linear-gradient(135deg, #f093fb, #f5576c); }
+
+.card-projet { background-image: url("src/assets/projet_logo.jpg"); }
+.card-projet::before { background: linear-gradient(135deg, #ff6b6b, #ffa502); }
+/* --- Styles du contenu --- */
+.matiere-card h3 {
+  font-size: 1.3rem;
+  margin-top: 10px !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.year-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.domain-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 10px !important;
+}
+
+.rate-button {
+  background: white;
+  color: #333;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .matiere-card:hover {
-  transform: translateX(5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+  background-blend-mode: normal;
 }

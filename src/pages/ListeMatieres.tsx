@@ -9,7 +9,6 @@ export default function ListeMatieres() {
   const [selectedYear, setSelectedYear] = useState<string>('all');
   const navigate = useNavigate();
 
-
   useEffect(() => {
     getAllSubjects()
       .then(data => {
@@ -22,10 +21,19 @@ export default function ListeMatieres() {
       })
   }, []);
 
+  // Fonction pour transformer les noms de catégories en classes CSS valides
+  const formatClassName = (name: string) => {
+    if (!name) return 'card-default';
+    return 'card-' + name
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Supprime les accents
+      .replace(/\s+/g, '-'); // Remplace les espaces par des tirets
+  };
+
   const filteredSubjects = subjects
     .filter(s => selectedYear === 'all' || s.year === selectedYear);
 
-  if (loading) return <p>Chargement...</p>;
+  if (loading) return <div className="loading-state">Chargement...</div>;
 
   return (
     <section className="liste-matieres-section">
@@ -41,14 +49,31 @@ export default function ListeMatieres() {
       </div>
 
       <div className="matieres-grid">
-        {filteredSubjects.map(subject => (
-          <div key={subject.id} className="matiere-card">
-            <h3>{subject.name}</h3>
-            <span>{subject.year}</span>
-            <span>{subject.domains?.name}</span>
-			<button className="rate-button" onClick={() => navigate(`/subjects/${subject.id}`)}>Noter</button>
-          </div>
-        ))}
+        {filteredSubjects.map(subject => {
+          const domainClass = formatClassName(subject.domains?.name);
+
+          return (
+            /* On concatène toujours la classe de base ET la classe spécifique */
+            <div key={subject.id} className={`matiere-card ${domainClass}`}>
+              <div className="card-content">
+                <div className="card-header">
+                   <span className="year-badge">{subject.year}</span>
+                   <h3>{subject.name}</h3>
+                </div>
+                
+                <div className="card-footer">
+                  <span className="domain-label">{subject.domains?.name}</span>
+                  <button 
+                    className="rate-button" 
+                    onClick={() => navigate(`/subjects/${subject.id}`)}
+                  >
+                    Noter
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
