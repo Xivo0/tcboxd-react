@@ -47,7 +47,7 @@
 .review-card {
   /* La règle d'or pour le défilement : */
   /* flex-grow: 0, flex-shrink: 0, flex-basis: auto */
-  flex: 0 0 auto; 
+  flex: 0 0 280px; 
   
   margin-top: 5px;
   width: 280px; /* Largeur fixe de la carte */

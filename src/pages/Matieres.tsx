@@ -19,10 +19,11 @@ export default function Matieres() {
   const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<any>(null);
 
-  const [rating, setRating] = useState<number>(5);
-  const [dsGrade, setDsGrade] = useState<number>(0);
+  const [rating, setRating] = useState<string>('');
+  const [dsGrade, setDsGrade] = useState<string>('');
   const [comment, setComment] = useState<string>('');
   const [submitting, setSubmitting] = useState<boolean>(false);
+
 
   // 1. ON SORT LA FONCTION POUR POUVOIR LA RAPPELER APRÈS SUPPRESSION
   const loadData = async () => {
@@ -48,33 +49,30 @@ export default function Matieres() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!id || !user) return alert("Connecte-toi avec GitHub !");
+    if (!id || !user) return;
     
     setSubmitting(true);
     try {
       const { error } = await supabase.from('reviews').insert([{ 
         user_id: user.id, 
         subject_id: id, 
-        user_rating: rating,
-        ds_grade: dsGrade,
+        user_rating: Number(rating),
+        ds_grade: Number(dsGrade),
         comment: comment 
       }]);
       if (error) throw error;
 
       await loadData(); // Rafraîchit la liste
       setComment('');
-      alert("Avis posté !");
     } catch (err: any) {
-      alert("Erreur : " + err.message);
     } finally {
       setSubmitting(false);
     }
   };
 
   const handleActionDelete = async (reviewId: string) => {
-    if (!window.confirm("Supprimer cet avis ?")) return;
     const { error } = await deleteReview(reviewId);
-    if (error) alert(error.message);
+    if (error) console.error('Erreur suppression:', error);
     else await loadData(); // Ici ça fonctionne car loadData est accessible
   };
 
@@ -86,6 +84,7 @@ export default function Matieres() {
 
   return (
     <div className="matiere-page">
+      
       <button className="back-button" onClick={() => navigate(-1)}>← Retour</button>
 
       <section className="matiere-header">
@@ -101,11 +100,11 @@ export default function Matieres() {
             <p>Posté en tant que : <strong>{user.user_metadata.full_name || user.email}</strong></p>
             <div className="form-group">
               <label>Note (0-10) :</label>
-              <input type="number" min={0} max={10} value={rating} onChange={e => setRating(Number(e.target.value))} required />
+              <input type="number" min={0} max={10} value={rating} onChange={e => setRating(String(e.target.value))} required />
             </div>
             <div className="form-group">
               <label>Note DS (0-20) :</label>
-              <input type="number" min={0} max={20} value={dsGrade} onChange={e => setDsGrade(Number(e.target.value))} required />
+              <input type="number" min={0} max={20} value={dsGrade} onChange={e => setDsGrade(String(e.target.value))} required />
             </div>
             <div className="form-group">
               <label>Commentaire :</label>
