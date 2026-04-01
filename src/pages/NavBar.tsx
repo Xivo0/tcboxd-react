@@ -1,6 +1,4 @@
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
@@ -54,11 +52,6 @@ export default function NavBar() {
     navigate('/')
   }
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Recherche lancée !");
-  }
-
   return (
     <Navbar expand="lg" className={`custom-navbar ${showNavbar ? 'navbar-visible' : 'navbar-hidden'}`}>
       <Container fluid>
@@ -84,25 +77,15 @@ export default function NavBar() {
             </NavDropdown>
           </Nav>
 
-          {/* Partie droite — recherche + profil */}
-          <div className="d-flex align-items-center gap-3">
-
-            {/* Barre de recherche */}
-            <Form className="d-flex" onSubmit={handleSearch}>
-              <Form.Control
-                type="search"
-                placeholder="Chercher un cours..."
-                className="me-2 rounded-pill"
-                aria-label="Search"
-              />
-              <Button type="submit" variant="outline-success" className="rounded-pill">
-                Rechercher
-              </Button>
-            </Form>
-
-            {/* Bouton profil — dropdown */}
+          {/* 👇 La modification est ici : on remplace la div par un Nav */}
+          <Nav>
             <NavDropdown
-              title={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" color='white'><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M2 14s-1 0-1-1 1-4 7-4 7 3 7 4-1 1-1 1H2z"/></svg>}
+              title={
+                <span className="d-flex align-items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M2 14s-1 0-1-1 1-4 7-4 7 3 7 4-1 1-1 1H2z"/></svg>
+                  Profil
+                </span>
+              }
               id="profile-dropdown"
               align="end"
             >
@@ -119,8 +102,7 @@ export default function NavBar() {
                 <NavDropdown.Item onClick={loginWithGithub}>Connexion</NavDropdown.Item>
               )}
             </NavDropdown>
-
-          </div>
+          </Nav>
 
         </Navbar.Collapse>
       </Container>
