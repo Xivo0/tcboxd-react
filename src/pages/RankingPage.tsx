@@ -63,18 +63,24 @@ export default function RankingPage() {
         {activeTab === 'subjects' && rankedSubjects.map((subject: any, index: number) => {
           const rank = index + 1;
           return (
-            <div key={`sub-${subject.id}`} className="leaderboard-row">
-              <div className={`rank-badge rank-${rank}`}>{rank}</div>
-              <div className="list-info">
-                <h3>{subject.name}</h3>
-              </div>
-              <div className="list-score">
-                <div className="score-number">
-                  {(subject.average_user_rating ?? 0).toFixed(1)} <span className="score-max">/ 10</span>
+            <Link
+              key={`sub-${subject.id}`}
+              to={`/subjects/${subject.id}`}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              <div className="leaderboard-row clickable-row">
+                <div className={`rank-badge rank-${rank}`}>{rank}</div>
+                <div className="list-info">
+                  <h3>{subject.name}</h3>
                 </div>
-                <div className="score-subtitle">{subject.reviews_count ?? ''} avis</div>
+                <div className="list-score">
+                  <div className="score-number">
+                    {(subject.average_user_rating ?? 0).toFixed(1)} <span className="score-max">/ 10</span>
+                  </div>
+                  <div className="score-subtitle">{subject.reviews_count ?? ''} avis</div>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
 

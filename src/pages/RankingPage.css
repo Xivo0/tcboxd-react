@@ -139,6 +139,9 @@ Ne pas déranger
   border-color: #d1d5db;
 }
 
+/* Indique que la ligne est cliquable 
+.clickable-row { cursor: pointer; }*/
+
 /* --- LE BADGE DE RANG (1er, 2ème, etc.) --- */
 .rank-badge {
   display: flex;
