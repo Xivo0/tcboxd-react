@@ -9,10 +9,26 @@ export async function getAllSubjects() {
       domains(name),
       subject_professors(
         professors(id, name)
-      )
+      ),
+      reviews(user_rating)
     `)
   if (error) throw error
-  return data
+
+  return data?.map(subject => {
+    const ratings = subject.reviews
+      ?.map((r: any) => r.user_rating)
+      .filter((r: any) => r !== null && r !== undefined) ?? []
+
+    const average = ratings.length > 0
+      ? ratings.reduce((a: number, b: number) => a + b, 0) / ratings.length
+      : 0
+
+    return {
+      ...subject,
+      average_user_rating: parseFloat(average.toFixed(1)),
+      reviews_count: ratings.length
+    }
+  })
 }
 
 
