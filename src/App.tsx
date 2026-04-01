@@ -1,7 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
-// Import 
 import Profil from './pages/ProfilePage'
 import NavBar from './pages/NavBar';
 import ListeMatieres from './pages/ListeMatieres';
@@ -47,13 +46,6 @@ function App() {
         <Route path="/subjects/:id" element={
           <div className="app-container">
             <Matieres />
-          </div>
-        } />
-
-        {/* Redirection si cours spécifique (optionnel selon ton projet) */}
-        <Route path="/course/:id" element = {
-          <div className="app-container">
-            <h2>Détails du cours</h2>
           </div>
         } />
 

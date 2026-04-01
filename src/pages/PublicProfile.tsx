@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import './PublicProfilePage.css';
 import { useEffect, useState } from 'react';
@@ -7,6 +7,7 @@ export default function PublicProfilePage() {
   const { username } = useParams(); 
   const [profileData, setProfileData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const fetchPublicData = async () => {
     setLoading(true);
@@ -57,7 +58,7 @@ export default function PublicProfilePage() {
         <div className="reviews-list">
           {profileData.reviews.length > 0 ? (
             profileData.reviews.map((review: any) => (
-              <div key={review.id} className="review-card">
+              <div key={review.id} className="review-card" onClick={()=> navigate(`/subjects/${review.subject_id}`)}>
                 <h4>{review.subjects?.name || "Matière inconnue"}</h4>
                 <p className="card-rating">Note : {review.user_rating} / 10</p> 
                 <p className="card-comment">"{review.comment}"</p>
