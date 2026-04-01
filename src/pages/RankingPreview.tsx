@@ -30,16 +30,16 @@ export default function RankingPreview() {
     {
       id: 1,
       title: "Top Suceurs",
-      first: topRaters[0]?.users?.username ?? '???',
-      second: topRaters[1]?.users?.username ?? '???',
-      third: topRaters[2]?.users?.username ?? '???'
+      first: topRaters[0]?.username ?? '???',
+      second: topRaters[1]?.username ?? '???',
+      third: topRaters[2]?.username ?? '???'
     },
     {
       id: 2,
       title: "Top Haters",
-      first: topHaters[0]?.users?.username ?? '???',
-      second: topHaters[1]?.users?.username ?? '???',
-      third: topHaters[2]?.users?.username ?? '???'
+      first: topHaters[0]?.username ?? '???',
+      second: topHaters[1]?.username ?? '???',
+      third: topHaters[2]?.username ?? '???'
     }
   ];
 

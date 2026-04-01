@@ -39,23 +39,23 @@ export async function addReview(
   return data
 }
 
-// Classement suceurs (meilleures notes)
 export async function getTopRaters() {
   const { data, error } = await supabase
-    .from('reviews')
-    .select('users(username), user_rating')
-    .order('user_rating', { ascending: false })
+    .from('users')
+    .select('username, grades_mean')
+    .not('grades_mean', 'is', null)
+    .order('grades_mean', { ascending: false })
     .limit(10)
   if (error) throw error
   return data
 }
-
 // Classement haters (pires notes)
 export async function getTopHaters() {
   const { data, error } = await supabase
-    .from('reviews')
-    .select('users(username), user_rating')
-    .order('user_rating', { ascending: true })
+    .from('users')
+    .select('username, grades_mean')
+    .not('grades_mean', 'is', null)
+    .order('grades_mean', { ascending: true })
     .limit(10)
   if (error) throw error
   return data
