@@ -4,7 +4,6 @@
   padding: 2rem;
 }
 
-/* Header matière */
 .matiere-header {
   border: 1px solid #180c39;
   border-radius: 12px;
@@ -18,33 +17,29 @@
   margin-bottom: 0.5rem;
 }
 
-/* Notes moyennes dans la même couleur que le titre */
 .matiere-header p {
   color: #180c39;
   font-weight: bold;
   margin: 0.25rem 0;
 }
 
-/* Classes spécifiques pour les notes moyennes */
 .average-rating,
 .average-ds-rating {
-  color: #7c3aed !important; /* Violet plus clair et visible */
+  color: #7c3aed !important;
   font-weight: bold;
   font-size: 1.1rem;
 }
 
 .average-rating strong,
 .average-ds-rating strong {
-  color: #7c3aed !important; /* S'assurer que les éléments strong sont aussi en violet */
+  color: #7c3aed !important;
 }
 
-/* Pseudos des commentateurs en violet */
 .review-author {
   color: #7c3aed !important;
   font-weight: bold;
 }
 
-/* Formulaire */
 .matiere-form {
   border: 1px solid #000000;
   border-radius: 12px;
@@ -68,8 +63,6 @@
   font-size: 1rem;
 }
 
-
-/* Avis */
 .matiere-reviews {
   display: flex;
   flex-direction: column;
@@ -95,4 +88,8 @@
 .matiere-reviews .review-rating {
   color: #aa3bff;
   font-weight: bold;
+}
+.matiere-form h2 {
+  color: #180c39;
+  margin-bottom: 1rem;
 }

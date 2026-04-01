@@ -62,7 +62,7 @@ export default function RecentReviews(){
             >
               {review.users?.username ?? 'Anonyme'}
             </h3>
-            <p  className='comment'>{review.comment ?? 'Pas de commentaire'}</p>
+            <p className='comment'>{review.comment ?? 'Pas de commentaire'}</p>
             <p>Note: {review.user_rating ?? 'N/A'}</p>
             <p>Note DS: {review.ds_grade ?? 'N/A'}</p>
             <p>

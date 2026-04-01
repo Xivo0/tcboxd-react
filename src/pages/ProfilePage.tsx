@@ -1,11 +1,13 @@
 import './ProfilePage.css';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfilePage() {
   // --- ÉTATS (States) ---
   const [user, setUser] = useState<any>(null);
   const [ratedSubjects, setRatedSubjects] = useState<any[]>([]);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
 
   // --- LOGIQUE DE RÉCUPÉRATION (Le fameux GET) ---
@@ -103,7 +105,7 @@ export default function ProfilePage() {
         <div className="ratings-grid">
           {ratedSubjects.length > 0 ? (
             ratedSubjects.map((review) => (
-              <div key={review.id} className="rating-card">
+              <div key={review.id} className="rating-card" onClick={()=> navigate(`/subjects/${review.subjects.id}`)}>
                 
                 {/* Titre de la matière */}
                 <div className="card-header">
